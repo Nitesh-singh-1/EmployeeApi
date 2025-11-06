@@ -1,0 +1,8 @@
+Employee Report - Parvati
+Name: Parvati
+Department: Finance
+Designation: Manager
+Age: 24, Gender: Female
+Address: Vithalwadi
+Documents:
+- WhatsAppImage2025-10-14at1.00.44PM.jpeg

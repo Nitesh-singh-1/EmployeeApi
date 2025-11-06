@@ -1,0 +1,276 @@
+Application Details
+Co-operative Name: testcoop
+Co-operative Tier: Primary
+Co-operative Category: Agriculture & Allied Cooperative
+Co-operative Sub-Category: Agriculture Cooperatives (Food Grain Growing)
+Urban/Rural Flag: Rural
+District: HOWRAH
+Block/Municipality: PANCHLA
+Thana: thana
+Panchayat/Town: CHARA-PANCHLA
+Post Office: test PO
+Village/Ward: Dakshin Panchla
+Address Line 1: test Road stree
+Address Line 2: 19
+Pincode: 123456
+Building Ownership: Own Building
+Created By: nitesh@test.com
+Area of Membership
+State: West Bengal
+Urban/Rural: Rural
+District: HOWRAH
+Block/Municipality: PANCHLA
+Panchayat/Town: CHARA-PANCHLA
+Village/Ward: Dakshin Panchla
+State: West Bengal
+Urban/Rural: Rural
+District: HOWRAH
+Block/Municipality: PANCHLA
+Panchayat/Town: BANHARISHPUR
+Village/Ward: Ban Harishpur (CT)
+Member List
+Name: Subham Paul
+Father's Name: Sanjib Paul
+Occupation: Teacher
+Age: 30
+Present Address: Present Address
+Permanent Address: Permarent Address
+Caste: SC
+Gender: Male
+Other Society: No
+Religion: Hindu
+Mobile No: 9001239004
+Email: subhampaul011@gmail.com
+Societies: None
+Name: Tiyash
+Father's Name: Sanjib Paul
+Occupation: Teacher
+Age: 30
+Present Address: Present Address
+Permanent Address: Permarent Address
+Caste: SC
+Gender: Male
+Other Society: No
+Religion: Hindu
+Mobile No: 9001239004
+Email: subhampaul011@gmail.com
+Societies: None
+Name: Nirmalya da
+Father's Name: Sanjib Paul
+Occupation: Teacher
+Age: 30
+Present Address: Present Address
+Permanent Address: Permarent Address
+Caste: SC
+Gender: Male
+Other Society: No
+Religion: Hindu
+Mobile No: 9001239004
+Email: subhampaul011@gmail.com
+Societies: None
+Name: Nitesh
+Father's Name: Sanjib Paul
+Occupation: Teacher
+Age: 30
+Present Address: Present Address
+Permanent Address: Permarent Address
+Caste: SC
+Gender: Male
+Other Society: No
+Religion: Hindu
+Mobile No: 9001239004
+Email: subhampaul011@gmail.com
+Societies: None
+Name: Aditya
+Father's Name: Sanjib Paul
+Occupation: Teacher
+Age: 30
+Present Address: Present Address
+Permanent Address: Permarent Address
+Caste: SC
+Gender: Male
+Other Society: No
+Religion: Hindu
+Mobile No: 9001239004
+Email: subhampaul011@gmail.com
+Societies: None
+Name: Rishab
+Father's Name: Sanjib Paul
+Occupation: Teacher
+Age: 30
+Present Address: Present Address
+Permanent Address: Permarent Address
+Caste: SC
+Gender: Male
+Other Society: Yes
+Religion: Hindu
+Mobile No: 9001239004
+Email: subhampaul011@gmail.com
+Societies: None
+Name: Rohit
+Father's Name: Sanjib Paul
+Occupation: Teacher
+Age: 30
+Present Address: Present Address
+Permanent Address: Permarent Address
+Caste: SC
+Gender: Male
+Other Society: No
+Religion: Hindu
+Mobile No: 9001239004
+Email: subhampaul011@gmail.com
+Societies: None
+Name: Lakshman
+Father's Name: Sanjib Paul
+Occupation: Teacher
+Age: 30
+Present Address: Present Address
+Permanent Address: Permarent Address
+Caste: SC
+Gender: Male
+Other Society: No
+Religion: Hindu
+Mobile No: 9001239004
+Email: subhampaul011@gmail.com
+Societies: None
+Name: Sutista
+Father's Name: Sanjib Paul
+Occupation: Teacher
+Age: 30
+Present Address: Present Address
+Permanent Address: Permarent Address
+Caste: SC
+Gender: Male
+Other Society: No
+Religion: Hindu
+Mobile No: 9001239004
+Email: subhampaul011@gmail.com
+Societies: None
+Name: Arpan
+Father's Name: Sanjib Paul
+Occupation: Teacher
+Age: 30
+Present Address: Present Address
+Permanent Address: Permarent Address
+Caste: SC
+Gender: Male
+Other Society: No
+Religion: Hindu
+Mobile No: 9001239004
+Email: subhampaul011@gmail.com
+Societies: None
+Name: Kajal
+Father's Name: Sanjib Paul
+Occupation: Teacher
+Age: 30
+Present Address: Present Address
+Permanent Address: Permarent Address
+Caste: SC
+Gender: Male
+Other Society: No
+Religion: Hindu
+Mobile No: 9001239004
+Email: subhampaul011@gmail.com
+Societies: None
+Name: Rekha
+Father's Name: Sanjib Paul
+Occupation: Teacher
+Age: 30
+Present Address: Present Address
+Permanent Address: Permarent Address
+Caste: SC
+Gender: Male
+Other Society: No
+Religion: Hindu
+Mobile No: 9001239004
+Email: subhampaul011@gmail.com
+Societies: None
+Name: Sushma
+Father's Name: Sanjib Paul
+Occupation: Teacher
+Age: 30
+Present Address: Present Address
+Permanent Address: Permarent Address
+Caste: SC
+Gender: Male
+Other Society: No
+Religion: Hindu
+Mobile No: 9001239004
+Email: subhampaul011@gmail.com
+Societies: None
+Name: Jaya
+Father's Name: Sanjib Paul
+Occupation: Teacher
+Age: 30
+Present Address: Present Address
+Permanent Address: Permarent Address
+Caste: SC
+Gender: Male
+Other Society: No
+Religion: Hindu
+Mobile No: 9001239004
+Email: subhampaul011@gmail.com
+Societies: None
+Name: Viru
+Father's Name: Sanjib Paul
+Occupation: Teacher
+Age: 30
+Present Address: Present Address
+Permanent Address: Permarent Address
+Caste: SC
+Gender: Male
+Other Society: No
+Religion: Hindu
+Mobile No: 9001239004
+Email: subhampaul011@gmail.com
+Societies: None
+Member Share
+Application ID: PV1931310177000203
+Co-operative Name: testcoop
+Nature of Liability: Unlimited
+On/Without Share: On Share
+Individual Member Count: 1
+Societies Count: 1
+Executive Member List
+Name: Jaya
+Father's Name: Sanjib Paul
+Designation: President
+Mobile No: 
+Email: 
+Mobile Verified: No
+Email Verified: No
+Name: Nitesh
+Father's Name: Sanjib Paul
+Designation: Chief Executive Officer
+Mobile No: 
+Email: 
+Mobile Verified: No
+Email Verified: No
+Chief Promoter
+Application ID: PV1931310177000203
+Member Name: Nirmalya da
+State: West Bengal
+Urban/Rural: Rural
+District: HOWRAH
+Block/Municipality: PANCHLA
+Panchayat/Municipality: CHARA-PANCHLA
+Post Office: test po
+Village/Ward: Dakshin Panchla
+Address Line 1: test street
+Address Line 2: 12
+Pincode: 123456
+Mobile No: N/A
+Email: N/A
+Mobile Verified: No
+Email Verified: No
+Signatory Member List
+Name: Jaya
+Mobile No: 9001239004
+Email: subhampaul011@gmail.com
+Mobile Verified: No
+Email Verified: No
+Name: Lakshman
+Mobile No: 9001239004
+Email: subhampaul011@gmail.com
+Mobile Verified: No
+Email Verified: No
