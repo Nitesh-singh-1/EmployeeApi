@@ -1,8 +1,0 @@
-Employee Report - Tiyash Saha
-Name: Tiyash Saha
-Department: IT
-Designation: Jr. Associate
-Age: 24, Gender: Male
-Address: Ranchi
-Documents:
-- 00ec5917-b474-451a-b03d-a0c0fdba07b6_Tiyash Saha MCA RESUME (2).pdf

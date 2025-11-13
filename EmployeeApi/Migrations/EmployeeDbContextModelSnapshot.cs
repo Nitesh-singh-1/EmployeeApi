@@ -37,6 +37,9 @@ namespace EmployeeApi.Migrations
                     b.Property<int?>("Age")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ApprovedBy")
+                        .HasColumnType("int");
+
                     b.Property<string>("Department")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -60,8 +63,20 @@ namespace EmployeeApi.Migrations
                     b.Property<bool?>("IsApproved")
                         .HasColumnType("bit");
 
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Remarks")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("createdBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("createdOn")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id")
                         .HasName("PK__Employee__3214EC0731412635");
@@ -76,6 +91,12 @@ namespace EmployeeApi.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreatedOn")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
@@ -111,6 +132,15 @@ namespace EmployeeApi.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ParentUserId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Password")
                         .IsRequired()

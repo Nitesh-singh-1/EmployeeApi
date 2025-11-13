@@ -1,0 +1,81 @@
+Electronic Reservation Slip (ERS)
+Passenger Details
+Acronyms
+Transaction Id-(100006013928665)
+IR recovers only 57% of cost of travel on an average.
+Convenience Fee & Agent Service Charges are charged per e-ticket irrespective of no. of passengers on the ticket.
+* The printed Departure and Arrival Times are liable to change. Please check correct departure, arrival from Railway Station Enquiry or Dial 139 or
+SMS RAIL to 139
+Agent Details
+Principal Agent Name : LE TRAVENUES TECHNOLOGY LIMITED
+Customer care Email : bookings@confirmtkt.com Customer Care Contact : 08068243910
+Prescribed original ID proof is required while travelling along with SMS/ VRM/ ERS otherwise will be treated as without ticket and
+penalized as per Railway Rules.
+Indian Railways GST Details
+Invoice Number : NA Address : NA
+Supplier Information
+HSN code : NA GSTIN : NA
+Boarding From To
+KOLKATA (KOAA) PRAYAGRAJ JN. (PRYJ)
+Departure* 10:45 26-Sep-2025 Arrival* 01:05 27-Sep-2025
+PNR Train No./ Name Class
+6657544880 04154 / KOAA CNB SPL SLEEPER (SL)
+Quota Distance Ticket Printing Time
+GENERAL (GN) 816 KM 28-Aug-2025 20:29:57 Hrs
+# Name Age Gender Food Choice Booking Status Current Status
+1. NITESH S 25 M NO FOOD CNF/S2/46 UB CNF/S2/46 UB
+RLWL : REMOTE LOCATION WAITLIST RSWL : ROAD-SIDE WAITLIST PQWL: POOLED QUOTA
+Payment Details
+Ticket Fare : 555
+Convenience Fee : 17.7
+Agent Service Charge : 19.99
+Travel Insurance Premium : 0.45
+PG Charge : 0
+Total Fare : 594
+Recipient Information
+Place of Supply : NA State Code/Name of Supplier: NA
+Instructions
+1. Prescribed Original ID proofs are:- Voter Identity Card / Passport / PAN Card / Driving License / Photo ID card issued by Central / StateGovt./ Public Sector
+Undertakings of State / Central Government, District Administrations, Municipal bodies and Panchayat Administrations which are having serial number /
+Student Identity Card with photograph issued by recognized School or College for their students / Nationalized Bank Passbook with photograph / Credit Cards
+issued by Banks with laminated photograph / Unique Identification Card "Aadhaar", m - Aadhaar, eAadhaar. / Passenger showing the Aadhaar / Driving
+Licence from the "Issued Document" section by logging into his / her DigiLocker account considered as valid proof of identity. (Documents uploaded by the
+user i.e.the document in "Uploaded Document" section will not be considered as a valid proof of identity).
+2. PNRs having fully waitlisted status will be dropped and automatic refund of the booking amount shall be credited to the account used for payment for
+booking of the ticket.Fully waitlisted e - ticket are not allowed to board the train.However, the names of PARTIALLY waitlisted / confirmed and RAC ticket
+passenger will appear in the chart and will be allowed to board the train.
+3. Passengers travelling on a fully waitlisted e-ticket will be treated as Ticketless.
+4. Obtain certificate from the TTE /Conductor in case of (a) PARTIALLY waitlisted e-ticket when LESS NO. OF PASSENGERS travel, (b)A.C FAILURE,
+(c)TRAVEL IN LOWER CLASS. This original certificate must be sent to GGM (IT), IRCTC, Internet Ticketing Centre, 2nd Floor, Tower-D, World Trade Centre,
+Nauroji Nagar, New Delhi- 110029, after filing TDR online within prescribed time for claiming refund.
+5. In case, on a party e-ticket or a family e-ticket issued for travel of more than one passenger, some passengers have confirmed reservation and others are
+on RAC or waiting list, full refund of fare, less clerkage, shall be admissible for confirmed passengers also subject to the condition that the ticket shall be
+cancelled online or online TDR shall be filed for all the passengers upto thirty minutes before the scheduled departure of the train.
+6. In case of train cancellation on its entire run, full refund is granted automatically by the system. However, if the train is cancelled partially on its run or
+diverted and not touching boarding / destination station, passengers are required to file online TDR within 72 hours of scheduled departure of the train from
+passengers boarding station.
+7. Never purchase e-ticket from unauthorized agents or persons using their personal IDs for commercial purposes. Such tickets are liable to be cancelled and
+forfeited without any refund of money, under section(143) of the Indian Railway Act 1989.List of authorized agents are available on www.irctc.com E - Ticket
+Agent Locator.
+8. For detail, Rules, Refund rules, Terms & Conditions of E-Ticketing services, Travel Insurance facility etc. Please visit www.irctc.co.in
+9. While booking this ticket, you have agreed of having read the Health Protocol of Destination State of your travel. You are again advised to clearly read the
+Health Protocol advisory of destination state before start of your travel and follow them properly.
+10. The FIR forms are available with on board ticket checking staff, train guard and train escorting RPF/GRP staff.
+11. Variety of meals available in more than 1500 trains. For delivery of meal of your choice on your seat log on to www.ecatering.irctc.co.in or call 1323 Toll
+Free.For any suggestions / complaints related to Catering services, contact Toll Free No. 1800 - 111 - 321(07.00 hrs to 22.00 hrs)
+12. E-ticket cancellations are permitted through respective agent only
+Agent Service Charge for E-Ticket inclusive of tax (nonrefundable)
+Class Service Charge
+Non - AC class Rs.20/-
+AC class including FC Rs.40/-
+14. National Consumer Helpline (NCH) Toll Free Number: 1800-11-400 or 14404
+15. You can book unreserved ticket from UTS APP or ATVMs (Automatic Ticket Vending Machines) located in Railway Stations.
+Contact us on: bookings@confirmtkt.com OR 24*7 Hrs Customer Support at 08068243910
+GSTIN : NA
+Name : NA Address : NA
+Taxable Value : 0.0
+CGST Rate : 0.0% CGST Amount : 0.00
+SGST/UGST Rate : 0.0% SGST/UGST Amount : 0.00
+IGST Rate : 0.0% IGST Amount : 0.00
+Total tax : 0.00
+

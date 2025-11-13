@@ -27,6 +27,9 @@ namespace EmployeeApi.Controllers
                 return BadRequest(new { message = "Remark is required for approval or rejection." });
             emp.IsApproved = request.isApproved;
             emp.Remarks = request.Remark;
+            emp.ApprovedBy = request.userId;
+            emp.ModifiedBy = request.userId;
+            emp.ModifiedOn = DateTime.Now;
             await _context.SaveChangesAsync();
             return Ok(new
             {

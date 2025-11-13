@@ -19,7 +19,13 @@ public partial class Employee
 
     public string? Address { get; set; }
 
-    public bool? IsApproved { get; set; } = false!;
+    public bool? IsApproved { get; set; }
     public string? Remarks { get; set; }
+    public int? createdBy { get; set; }
+
+    public DateTime? createdOn { get; set; }
+    public int? ApprovedBy { get; set; }
+    public DateTime? ModifiedOn { get; set; }
+    public int? ModifiedBy { get; set; }
     public virtual ICollection<EmployeeDocument> EmployeeDocuments { get; set; } = new List<EmployeeDocument>();
 }

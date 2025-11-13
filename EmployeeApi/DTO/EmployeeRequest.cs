@@ -10,6 +10,12 @@
         public string Address { get; set; } = string.Empty;
         public bool? IsApproved { get; set; }
         public string? Remarks { get; set; }
+        public int? createdBy { get; set; }
+
+        public DateTime? createdOn { get; set; }
+        public int? ApprovedBy { get; set; }
+        public DateTime? ModifiedOn { get; set; }
+        public int? ModifiedBy { get; set; }
         public List<IFormFile>? Documents { get; set; }
     }
 
@@ -45,5 +51,6 @@
         public int Id { get; set; }
         public bool isApproved { get; set; }
         public string Remark { get; set; } = string.Empty;
+        public int userId { get; set; }
     }
 }

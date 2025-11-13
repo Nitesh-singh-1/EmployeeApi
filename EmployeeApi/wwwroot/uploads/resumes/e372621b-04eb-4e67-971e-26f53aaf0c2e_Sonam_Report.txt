@@ -1,9 +1,0 @@
-Employee Report - Sonam
-Name: Sonam
-Department: IT
-Designation: SDE
-Age: 29, Gender: Female
-Address: Patna
-Documents:
-- growtika-yGQmjh2uOTg-unsplash.jpg
-- certificate (1).jpg

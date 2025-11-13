@@ -3,8 +3,12 @@ using Docnet.Core.Models;
 using Docnet.Core.Readers;
 using EmployeeApi.DTO;
 using EmployeeApi.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration.UserSecrets;
+using Microsoft.VisualBasic;
+using System.Linq;
 using System.Text;
 
 namespace EmployeeApi.Controllers
@@ -21,33 +25,88 @@ namespace EmployeeApi.Controllers
             _environment = environment;
         }
         [HttpGet("getAll")]
-        public IActionResult GetAll()
+        public IActionResult GetAll([FromQuery] int userId)
         {
-            //var employees = _context.Employees.ToList();
-            //return Ok(employees);
-            var employees = _context.Employees
-        .Select(e => new
-        {
-            id = e.Id,  // Assuming Id is the property name in your entity
-            employeeName = e.EmployeeName,
-            department = e.Department,
-            designation = e.Designation,
-            age = e.Age,
-            gender = e.Gender,
-            address = e.Address,
-            isApproved = e.IsApproved,
-            remarks= e.Remarks,
-            employeeDocuments = e.EmployeeDocuments.Select(doc => new
+            var query = _context.Employees.AsQueryable();
+
+            // ✅ Apply WHERE condition only if userId != 0
+            if (userId != 0)
             {
-               
-                documentId = doc.Id,
-                EMployeeID = doc.EmployeeId,
-                documentName = doc.FileName,
-                filePath = doc.FilePath,
-                
-            }).ToList()
-        })
-        .ToList();
+                query = query.Where(e => e.createdBy == userId);
+            }
+
+            var employees = query
+                .Select(e => new
+                {
+                    id = e.Id,
+                    employeeName = e.EmployeeName,
+                    department = e.Department,
+                    designation = e.Designation,
+                    age = e.Age,
+                    gender = e.Gender,
+                    address = e.Address,
+                    isApproved = e.IsApproved,
+                    remarks = e.Remarks,
+                    employeeDocuments = e.EmployeeDocuments.Select(doc => new
+                    {
+                        documentId = doc.Id,
+                        employeeId = doc.EmployeeId,
+                        documentName = doc.FileName,
+                        filePath = doc.FilePath,
+                    }).ToList()
+                })
+                .ToList();
+
+            return Ok(employees);
+        }
+
+        [HttpGet("getAllEmployee")]
+        public IActionResult GetAllEmployee([FromQuery] int userId,[FromQuery] int superVisorID)
+        {
+            // Step 1️⃣: Start with base query
+            var query = _context.Employees.AsQueryable();
+
+            // Step 2️⃣: If a specific userId is provided → get only that user's employees
+            if (userId != 0)
+            {
+                query = query.Where(e => e.createdBy == userId);
+            }
+            // Step 3️⃣: Else, if supervisor ID is provided → find operators under that supervisor
+            else if (superVisorID != 0)
+            {
+                var childUserIds = _context.Users
+                    .Where(u => u.ParentUserId == superVisorID)
+                    .Select(u => u.Id)
+                    .ToList();
+
+                // Get all employees created by those child users
+                query = query.Where(e => e.createdBy.HasValue && childUserIds.Contains(e.createdBy.Value));
+
+            }
+
+            // Step 4️⃣: Select the data and shape it
+            var employees = query
+                .Select(e => new
+                {
+                    id = e.Id,
+                    employeeName = e.EmployeeName,
+                    department = e.Department,
+                    designation = e.Designation,
+                    age = e.Age,
+                    gender = e.Gender,
+                    address = e.Address,
+                    isApproved = e.IsApproved,
+                    remarks = e.Remarks,
+                    employeeDocuments = e.EmployeeDocuments.Select(doc => new
+                    {
+                        documentId = doc.Id,
+                        employeeId = doc.EmployeeId,
+                        documentName = doc.FileName,
+                        filePath = doc.FilePath,
+                    }).ToList()
+                })
+                .ToList();
+
             return Ok(employees);
         }
 
@@ -100,6 +159,8 @@ namespace EmployeeApi.Controllers
                 Age = employeeRequest.Age,
                 Gender = employeeRequest.Gender,
                 Address = employeeRequest.Address,
+                createdOn = DateTime.Now,
+                createdBy = employeeRequest.createdBy,
             };
 
             _context.Employees.Add(employee);
@@ -135,7 +196,9 @@ namespace EmployeeApi.Controllers
                             EmployeeId = employee.Id,
                             FileName = pdfFileName,
                             FilePath = $"/uploads/resumes/{pdfFileName}",
-                            UploadedOn = DateTime.Now
+                            UploadedOn = DateTime.Now,
+                            CreatedBy=employee.createdBy,
+                            CreatedOn = DateTime.Now,
                         };
                         _context.EmployeeDocuments.Add(document);
                     }
@@ -199,7 +262,8 @@ namespace EmployeeApi.Controllers
                 employee.Age = model.Age;
                 employee.Gender = model.Gender;
                 employee.Address = model.Address;
-
+                employee.ModifiedBy = model.ModifiedBy;
+                employee.ModifiedOn = DateTime.Now;
                 _context.Employees.Update(employee);
                 await _context.SaveChangesAsync();
 
@@ -234,7 +298,10 @@ namespace EmployeeApi.Controllers
                                 EmployeeId = employee.Id,
                                 FileName = pdfFileName,
                                 FilePath = $"/uploads/resumes/{pdfFileName}",
-                                UploadedOn = DateTime.Now
+                                UploadedOn = DateTime.Now,
+                                CreatedBy=employee.createdBy,
+                                CreatedOn = DateTime.Now,
+
                             };
 
                             _context.EmployeeDocuments.Add(document);

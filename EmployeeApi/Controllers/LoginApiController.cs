@@ -33,6 +33,7 @@ namespace EmployeeApi.Controllers
             return Ok(new
             {
                 message = "Login successful.",
+                id = user.Id,
                 username = user.Username,
                 role = user.Role
             });

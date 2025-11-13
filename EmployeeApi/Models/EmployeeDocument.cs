@@ -16,7 +16,9 @@ public partial class EmployeeDocument
     public DateTime? UploadedOn { get; set; }
 
     public byte[]? ImageData { get; set; }
+    public int? CreatedBy { get; set; }
 
-    
+    public DateTime? CreatedOn { get; set; }
+
     public virtual Employee Employee { get; set; } = null!;
 }
