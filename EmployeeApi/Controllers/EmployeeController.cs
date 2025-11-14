@@ -334,13 +334,29 @@ namespace EmployeeApi.Controllers
         [HttpDelete("delete/{id}")]
         public async Task<IActionResult> DeleteEmployee(int id)
         {
-            var emp = _context.Employees.Find(id);
+            var emp = await _context.Employees.FindAsync(id);
 
 
             if (emp == null) 
                 return NotFound(new {messgae="Employee Not Found."});
 
             var docs = _context.EmployeeDocuments.Where(emp => emp.EmployeeId == id).ToList();
+            foreach (var doc in docs)
+            {
+                string fullPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", doc.FilePath.TrimStart('/'));
+
+                if (System.IO.File.Exists(fullPath))
+                {
+                    System.IO.File.Delete(fullPath);
+                }
+
+                // Delete extracted .txt file also
+                string txtFilePath = Path.ChangeExtension(fullPath, ".txt");
+                if (System.IO.File.Exists(txtFilePath))
+                {
+                    System.IO.File.Delete(txtFilePath);
+                }
+            }
 
             _context.EmployeeDocuments.RemoveRange(docs);
             _context.Employees.Remove(emp);
@@ -358,12 +374,27 @@ namespace EmployeeApi.Controllers
         public async Task<IActionResult> DeleteImage(int id)
         {
 
-            var doc = _context.EmployeeDocuments.Find(id);
-            if (doc != null)
+            var doc =await _context.EmployeeDocuments.FindAsync(id);
+            if (doc == null)
+                return NotFound(new { message = "Document Not Found." });
+
+            // Physical file path
+            string fullPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", doc.FilePath.TrimStart('/'));
+
+            if (System.IO.File.Exists(fullPath))
             {
-                _context.EmployeeDocuments.Remove(doc);
-                _context.SaveChanges();
+                System.IO.File.Delete(fullPath);
             }
+
+            // Delete extracted text file
+            string txtFilePath = Path.ChangeExtension(fullPath, ".txt");
+            if (System.IO.File.Exists(txtFilePath))
+            {
+                System.IO.File.Delete(txtFilePath);
+            }
+
+            _context.EmployeeDocuments.Remove(doc);
+            await _context.SaveChangesAsync();
             return Ok(new
             {
                 message = "Document Deleted Successfully",
