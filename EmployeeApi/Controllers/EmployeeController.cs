@@ -27,12 +27,26 @@ namespace EmployeeApi.Controllers
         [HttpGet("getAll")]
         public IActionResult GetAll([FromQuery] int userId)
         {
+            var query2 = _context.Users.Where(e => e.ParentUserId == userId);
+
             var query = _context.Employees.AsQueryable();
 
             // ✅ Apply WHERE condition only if userId != 0
             if (userId != 0)
             {
-                query = query.Where(e => e.createdBy == userId);
+                // 🔍 Step 1: Find child user
+                var childUserId = _context.Users.AsNoTracking()
+                    .Where(u => u.ParentUserId == userId)
+                    .Select(u => u.Id)
+                    .FirstOrDefault();
+
+                // 🔁 Step 2: Decide which userId to use
+                var effectiveUserId = childUserId != 0
+                    ? childUserId
+                    : userId;
+
+                // ✅ Step 3: Apply employee filter
+                query = query.Where(e => e.createdBy == effectiveUserId);
             }
 
             var employees = query
