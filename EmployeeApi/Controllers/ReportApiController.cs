@@ -33,12 +33,13 @@ namespace EmployeeApi.Controllers
             u.Role,
             COUNT(CASE WHEN e.CreatedBy = u.Id THEN 1 END) AS EntryMade,
             COUNT(CASE WHEN e.ApprovedBy = u.Id 
-                AND u.ParentUserId IS NOT NULL THEN 1 END) AS [ApprovedOrRejected],
-            MAX(e.CreatedOn) AS LastEntry
+--                AND u.ParentUserId IS NOT NULL 
+THEN 1 END) AS [ApprovedOrRejected],
+            MAX(e.CreatedOn) AS LastEntry,Max(e.ModifiedOn) as ApprovedOn
         FROM Users u
         LEFT JOIN Employees e 
             ON u.Id IN (e.CreatedBy, e.ApprovedBy)
-        WHERE u.Role IN ('Operator', 'Supervisor')
+        WHERE u.Role IN ('Operator', 'Supervisor','Admin')
           AND e.CreatedOn BETWEEN '{start:yyyy-MM-dd HH:mm:ss}' AND '{end:yyyy-MM-dd HH:mm:ss}'
         GROUP BY u.Username, u.Role
         ORDER BY u.Role, u.Username;
@@ -47,7 +48,7 @@ namespace EmployeeApi.Controllers
             // Optional: apply role filter dynamically
             if (!string.Equals(role, "All", StringComparison.OrdinalIgnoreCase))
             {
-                sql = sql.Replace("IN ('Operator', 'Supervisor')",
+                sql = sql.Replace("IN ('Operator', 'Supervisor','Admin')",
                                   $"= '{role}'");
             }
 

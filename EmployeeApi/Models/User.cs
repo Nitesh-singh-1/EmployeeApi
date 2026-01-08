@@ -27,4 +27,5 @@ public class UserReportViewModel
     public int EntryMade { get; set; }
     public int ApprovedOrRejected { get; set; }
     public DateTime? LastEntry { get; set; }
+    public DateTime? ApprovedOn { get; set; }
 }

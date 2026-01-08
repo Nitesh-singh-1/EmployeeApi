@@ -63,10 +63,10 @@ namespace EmployeeApi.Controllers
                     remarks = e.Remarks,
                     employeeDocuments = e.EmployeeDocuments.Select(doc => new
                     {
-                        documentId = doc.Id,
-                        employeeId = doc.EmployeeId,
-                        documentName = doc.FileName,
-                        filePath = doc.FilePath,
+                        Id = doc.Id,
+                        EmployeeId = doc.EmployeeId,
+                        FileName = doc.FileName,
+                        FilePath = doc.FilePath,
                     }).ToList()
                 })
                 .ToList();
@@ -113,10 +113,10 @@ namespace EmployeeApi.Controllers
                     remarks = e.Remarks,
                     employeeDocuments = e.EmployeeDocuments.Select(doc => new
                     {
-                        documentId = doc.Id,
-                        employeeId = doc.EmployeeId,
-                        documentName = doc.FileName,
-                        filePath = doc.FilePath,
+                        Id = doc.Id,
+                        EmployeeId = doc.EmployeeId,
+                        FileName = doc.FileName,
+                        FilePath = doc.FilePath,
                     }).ToList()
                 })
                 .ToList();
@@ -141,10 +141,10 @@ namespace EmployeeApi.Controllers
              remarks = e.Remarks,
              employeeDocuments = e.EmployeeDocuments.Select(doc => new
              {
-                 documentId = doc.Id,
-                 employeeId = doc.EmployeeId,
-                 documentName = doc.FileName,
-                 filePath = doc.FilePath,
+                 Id = doc.Id,
+                 EmployeeId = doc.EmployeeId,
+                 FileName = doc.FileName,
+                 FilePath = doc.FilePath,
              }).ToList()
          })
          .ToList();
