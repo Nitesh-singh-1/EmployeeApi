@@ -126,38 +126,28 @@ namespace EmployeeApi.Controllers
         [HttpGet("getAllEmployeeforAdmin")]
         public IActionResult GetAllEmployeeforAdmin()
         {
-            var employees = _context.Employees
-                .GroupJoin(_context.EmployeeDocuments,
-                    e => e.Id,
-                    d => d.EmployeeId,
-                    (e, docs) => new { e, docs })
-                .SelectMany(x => x.docs.DefaultIfEmpty(),
-                    (x, d) => new { x.e, d })
-                .GroupJoin(_context.Users,
-                    ed => ed.e.createdBy,
-                    u => u.Id,
-                    (ed, users) => new { ed.e, ed.d, users })
-                .SelectMany(x => x.users.DefaultIfEmpty(),
-                    (x, u) => new EmployeeAdminDto
-                    {
-                        Id = x.e.Id,
-                        EmployeeName = x.e.EmployeeName,
-                        Department = x.e.Department,
-                        Designation = x.e.Designation,
-                        Age = x.e.Age,
-                        Gender = x.e.Gender,
-                        Address = x.e.Address,
-                        IsApproved = x.e.IsApproved,
-                        Remarks = x.e.Remarks,
-
-                        DocumentId = x.d != null ? x.d.Id : null,
-                        FileName = x.d.FileName,
-                        FilePath = x.d.FilePath,
-                        UploadedOn = x.d.UploadedOn,
-
-                        EnteryMadeBy = u.Username
-                    })
-                .ToList();
+            var query = _context.Employees.AsQueryable();
+            var employees = query
+         .Select(e => new
+         {
+             id = e.Id,
+             employeeName = e.EmployeeName,
+             department = e.Department,
+             designation = e.Designation,
+             age = e.Age,
+             gender = e.Gender,
+             address = e.Address,
+             isApproved = e.IsApproved,
+             remarks = e.Remarks,
+             employeeDocuments = e.EmployeeDocuments.Select(doc => new
+             {
+                 documentId = doc.Id,
+                 employeeId = doc.EmployeeId,
+                 documentName = doc.FileName,
+                 filePath = doc.FilePath,
+             }).ToList()
+         })
+         .ToList();
 
             return Ok(employees);
         }
