@@ -75,7 +75,7 @@ namespace EmployeeApi.Controllers
         }
 
         [HttpGet("getAllEmployee")]
-        public IActionResult GetAllEmployee([FromQuery] int userId,[FromQuery] int superVisorID)
+        public IActionResult GetAllEmployee([FromQuery] int userId, [FromQuery] int superVisorID)
         {
             // Step 1️⃣: Start with base query
             var query = _context.Employees.AsQueryable();
@@ -123,12 +123,50 @@ namespace EmployeeApi.Controllers
 
             return Ok(employees);
         }
+        [HttpGet("getAllEmployeeforAdmin")]
+        public IActionResult GetAllEmployeeforAdmin()
+        {
+            var employees = _context.Employees
+                .GroupJoin(_context.EmployeeDocuments,
+                    e => e.Id,
+                    d => d.EmployeeId,
+                    (e, docs) => new { e, docs })
+                .SelectMany(x => x.docs.DefaultIfEmpty(),
+                    (x, d) => new { x.e, d })
+                .GroupJoin(_context.Users,
+                    ed => ed.e.createdBy,
+                    u => u.Id,
+                    (ed, users) => new { ed.e, ed.d, users })
+                .SelectMany(x => x.users.DefaultIfEmpty(),
+                    (x, u) => new EmployeeAdminDto
+                    {
+                        Id = x.e.Id,
+                        EmployeeName = x.e.EmployeeName,
+                        Department = x.e.Department,
+                        Designation = x.e.Designation,
+                        Age = x.e.Age,
+                        Gender = x.e.Gender,
+                        Address = x.e.Address,
+                        IsApproved = x.e.IsApproved,
+                        Remarks = x.e.Remarks,
+
+                        DocumentId = x.d != null ? x.d.Id : null,
+                        FileName = x.d.FileName,
+                        FilePath = x.d.FilePath,
+                        UploadedOn = x.d.UploadedOn,
+
+                        EnteryMadeBy = u.Username
+                    })
+                .ToList();
+
+            return Ok(employees);
+        }
 
         [HttpGet("GetEmpById/{id}")]
         public IActionResult Get(int id)
         {
             var emp = _context.Employees
-        .Include(e => e.EmployeeDocuments) 
+        .Include(e => e.EmployeeDocuments)
         .FirstOrDefault(e => e.Id == id);
 
             if (emp == null) return NotFound();
@@ -138,7 +176,7 @@ namespace EmployeeApi.Controllers
                 EmployeeName = emp.EmployeeName,
                 Department = emp.Department,
                 Designation = emp.Designation,
-                Age = Convert.ToInt32( emp.Age),
+                Age = Convert.ToInt32(emp.Age),
                 Gender = emp.Gender,
                 Address = emp.Address,
                 isApproved = emp.IsApproved,
@@ -146,10 +184,10 @@ namespace EmployeeApi.Controllers
                 EmployeeDocuments = emp.EmployeeDocuments.Select(d => new EmployeeDocumentResponse
                 {
                     Id = d.Id,
-                    EmployeeId=d.EmployeeId,
+                    EmployeeId = d.EmployeeId,
                     FileName = d.FileName,
                     FilePath = d.FilePath,
-                    UploadedOn=Convert.ToDateTime( d.UploadedOn),
+                    UploadedOn = Convert.ToDateTime(d.UploadedOn),
                     ImageData = d.ImageData
 
 
@@ -189,7 +227,7 @@ namespace EmployeeApi.Controllers
                 {
                     if (file.Length > 0)
                     {
-                        
+
                         string uniqueId = Guid.NewGuid().ToString();
                         string pdfFileName = $"{uniqueId}_{Path.GetFileName(file.FileName)}";
                         string pdfPath = Path.Combine(uploadsFolder, pdfFileName);
@@ -211,7 +249,7 @@ namespace EmployeeApi.Controllers
                             FileName = pdfFileName,
                             FilePath = $"/uploads/resumes/{pdfFileName}",
                             UploadedOn = DateTime.Now,
-                            CreatedBy=employee.createdBy,
+                            CreatedBy = employee.createdBy,
                             CreatedOn = DateTime.Now,
                         };
                         _context.EmployeeDocuments.Add(document);
@@ -234,21 +272,21 @@ namespace EmployeeApi.Controllers
 
             try
             {
-                
+
                 using var docReader = DocLib.Instance.GetDocReader(filePath, new PageDimensions(612, 792));
 
                 int pageCount = docReader.GetPageCount();
                 for (int i = 0; i < pageCount; i++)
                 {
                     using var pageReader = docReader.GetPageReader(i);
-                    
+
                     var pageText = pageReader.GetText();
                     sb.AppendLine(pageText);
                 }
             }
             catch (Exception ex)
             {
-                
+
                 Console.WriteLine($"Docnet text extraction failed: {ex.Message}");
             }
 
@@ -313,7 +351,7 @@ namespace EmployeeApi.Controllers
                                 FileName = pdfFileName,
                                 FilePath = $"/uploads/resumes/{pdfFileName}",
                                 UploadedOn = DateTime.Now,
-                                CreatedBy=employee.createdBy,
+                                CreatedBy = employee.createdBy,
                                 CreatedOn = DateTime.Now,
 
                             };
@@ -351,8 +389,8 @@ namespace EmployeeApi.Controllers
             var emp = await _context.Employees.FindAsync(id);
 
 
-            if (emp == null) 
-                return NotFound(new {messgae="Employee Not Found."});
+            if (emp == null)
+                return NotFound(new { messgae = "Employee Not Found." });
 
             var docs = _context.EmployeeDocuments.Where(emp => emp.EmployeeId == id).ToList();
             foreach (var doc in docs)
@@ -378,7 +416,7 @@ namespace EmployeeApi.Controllers
 
             return Ok(new
             {
-                message="Employee Deleted Successfully",
+                message = "Employee Deleted Successfully",
                 employeeId = id
 
             });
@@ -388,7 +426,7 @@ namespace EmployeeApi.Controllers
         public async Task<IActionResult> DeleteImage(int id)
         {
 
-            var doc =await _context.EmployeeDocuments.FindAsync(id);
+            var doc = await _context.EmployeeDocuments.FindAsync(id);
             if (doc == null)
                 return NotFound(new { message = "Document Not Found." });
 
@@ -412,7 +450,7 @@ namespace EmployeeApi.Controllers
             return Ok(new
             {
                 message = "Document Deleted Successfully",
-                documentId=id,
+                documentId = id,
                 employeeId = doc.EmployeeId
             });
 
@@ -438,7 +476,7 @@ namespace EmployeeApi.Controllers
             }
             else
             {
-                
+
                 document = employee.EmployeeDocuments?.FirstOrDefault();
                 if (document == null)
                     return NotFound("No document found for this employee.");
@@ -447,13 +485,13 @@ namespace EmployeeApi.Controllers
             if (string.IsNullOrWhiteSpace(document.FilePath))
                 return NotFound("Document file path is empty or invalid.");
 
-            
+
             var fullPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", document.FilePath.TrimStart('/'));
 
             if (!System.IO.File.Exists(fullPath))
                 return NotFound($"File not found on server. Path: {fullPath}");
 
-           
+
             var ext = Path.GetExtension(fullPath).ToLowerInvariant();
             var contentType = ext switch
             {
@@ -463,7 +501,7 @@ namespace EmployeeApi.Controllers
                 _ => "application/octet-stream"
             };
 
-            
+
             Response.Headers.Add("Content-Disposition", $"inline; filename={Path.GetFileName(fullPath)}");
 
             return PhysicalFile(fullPath, contentType);
