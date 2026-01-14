@@ -4,6 +4,7 @@ using EmployeeApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmployeeApi.Migrations
 {
     [DbContext(typeof(EmployeeDbContext))]
-    partial class EmployeeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260113165025_AddSubjectToEmployee")]
+    partial class AddSubjectToEmployee
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,18 +43,6 @@ namespace EmployeeApi.Migrations
                     b.Property<int?>("ApprovedBy")
                         .HasColumnType("int");
 
-                    b.Property<int?>("DeleteApprovedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("DeleteApprovedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("DeleteRequestedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("DeleteRequestedOn")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Department")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -75,12 +66,6 @@ namespace EmployeeApi.Migrations
                     b.Property<bool?>("IsApproved")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsDeleteRequested")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
                     b.Property<int?>("ModifiedBy")
                         .HasColumnType("int");
 
@@ -98,9 +83,6 @@ namespace EmployeeApi.Migrations
 
                     b.Property<DateTime?>("createdOn")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("toYear")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id")
                         .HasName("PK__Employee__3214EC0731412635");
@@ -122,12 +104,6 @@ namespace EmployeeApi.Migrations
                     b.Property<DateTime?>("CreatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("DeletedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
@@ -141,9 +117,6 @@ namespace EmployeeApi.Migrations
 
                     b.Property<byte[]>("ImageData")
                         .HasColumnType("varbinary(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("UploadedOn")
                         .ValueGeneratedOnAdd()

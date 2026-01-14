@@ -27,5 +27,17 @@ public partial class Employee
     public int? ApprovedBy { get; set; }
     public DateTime? ModifiedOn { get; set; }
     public int? ModifiedBy { get; set; }
+
+    public string? Subject { get; set; }
+
+    public string? toYear { get; set; }
+    public bool IsDeleted { get; set; } = false; 
+    public bool IsDeleteRequested { get; set; } = false;
+    public int? DeleteRequestedBy { get; set; }
+    public DateTime? DeleteRequestedOn { get; set; }
+
+    public int? DeleteApprovedBy { get; set; }
+    public DateTime? DeleteApprovedOn { get; set; }
+
     public virtual ICollection<EmployeeDocument> EmployeeDocuments { get; set; } = new List<EmployeeDocument>();
 }

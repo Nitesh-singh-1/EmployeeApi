@@ -56,11 +56,17 @@ namespace EmployeeApi.Controllers
                     employeeName = e.EmployeeName,
                     department = e.Department,
                     designation = e.Designation,
-                    age = e.Age,
+                    age = e.Age ?? 0,
                     gender = e.Gender,
                     address = e.Address,
                     isApproved = e.IsApproved,
                     remarks = e.Remarks,
+                    subject = e.Subject,
+                    ToYear = e.toYear,
+                    isDeleteRequested = e.IsDeleteRequested,
+                    isDeleted = e.IsDeleted,
+
+
                     employeeDocuments = e.EmployeeDocuments.Select(doc => new
                     {
                         Id = doc.Id,
@@ -106,11 +112,13 @@ namespace EmployeeApi.Controllers
                     employeeName = e.EmployeeName,
                     department = e.Department,
                     designation = e.Designation,
-                    age = e.Age,
+                    age = e.Age ?? 0,
                     gender = e.Gender,
                     address = e.Address,
                     isApproved = e.IsApproved,
                     remarks = e.Remarks,
+                    subject = e.Subject,
+                    ToYear = e.toYear,
                     employeeDocuments = e.EmployeeDocuments.Select(doc => new
                     {
                         Id = doc.Id,
@@ -134,11 +142,13 @@ namespace EmployeeApi.Controllers
              employeeName = e.EmployeeName,
              department = e.Department,
              designation = e.Designation,
-             age = e.Age,
+             age = e.Age ?? 0,
              gender = e.Gender,
              address = e.Address,
              isApproved = e.IsApproved,
              remarks = e.Remarks,
+             subject = e.Subject,
+             ToYear = e.toYear,
              employeeDocuments = e.EmployeeDocuments.Select(doc => new
              {
                  Id = doc.Id,
@@ -166,11 +176,13 @@ namespace EmployeeApi.Controllers
                 EmployeeName = emp.EmployeeName,
                 Department = emp.Department,
                 Designation = emp.Designation,
-                Age = Convert.ToInt32(emp.Age),
+                Age = emp.Age??0,
                 Gender = emp.Gender,
                 Address = emp.Address,
                 isApproved = emp.IsApproved,
                 Remarks = emp.Remarks,
+                subject = emp.Subject,
+                ToYear = emp.toYear,
                 EmployeeDocuments = emp.EmployeeDocuments.Select(d => new EmployeeDocumentResponse
                 {
                     Id = d.Id,
@@ -188,7 +200,7 @@ namespace EmployeeApi.Controllers
         }
 
         [HttpPost("add")]
-        public async Task<IActionResult> AddEmployee([FromForm] EmployeeRequest employeeRequest, List<IFormFile>? documents)
+        public async Task<IActionResult> AddEmployee([FromForm] AddEmployeeRequest employeeRequest, List<IFormFile>? documents)
         {
             if (employeeRequest == null)
                 return BadRequest("Invalid employee data");
@@ -198,9 +210,11 @@ namespace EmployeeApi.Controllers
                 EmployeeName = employeeRequest.EmployeeName,
                 Department = employeeRequest.Department,
                 Designation = employeeRequest.Designation,
-                Age = employeeRequest.Age,
-                Gender = employeeRequest.Gender,
+                Subject = employeeRequest.Subject,
+                //Age = employeeRequest.Age,
+                Gender = "Gender",
                 Address = employeeRequest.Address,
+                toYear = employeeRequest.ToYear,
                 createdOn = DateTime.Now,
                 createdBy = employeeRequest.createdBy,
             };
@@ -251,7 +265,7 @@ namespace EmployeeApi.Controllers
 
             return Ok(new
             {
-                message = "Employee added successfully!",
+                message = "Added successfully!",
                 employeeId = employee.Id
             });
         }
@@ -303,7 +317,9 @@ namespace EmployeeApi.Controllers
                 employee.Designation = model.Designation;
                 employee.Age = model.Age;
                 employee.Gender = model.Gender;
+                employee.Subject = model.subject;
                 employee.Address = model.Address;
+                employee.toYear = model.ToYear;
                 employee.ModifiedBy = model.ModifiedBy;
                 employee.ModifiedOn = DateTime.Now;
                 _context.Employees.Update(employee);
@@ -544,6 +560,78 @@ namespace EmployeeApi.Controllers
                 return StatusCode(500, new { message = "An error occurred while searching resumes.", error = ex.Message });
             }
         }
+
+        [HttpPost("delete-requested/{employeeId}")]
+        public async Task<IActionResult> DeleteRequested(int employeeId, [FromQuery] int userId)
+        {
+            var employee = await _context.Employees
+                .FirstOrDefaultAsync(e => e.Id == employeeId);
+
+            if (employee == null)
+                return NotFound(new { message = "Employee not found" });
+
+            if (employee.IsDeleteRequested)
+                return BadRequest(new { message = "Delete already requested" });
+
+            employee.IsDeleteRequested = true;
+            employee.DeleteRequestedBy = userId;
+            employee.DeleteRequestedOn = DateTime.Now;
+
+            await _context.SaveChangesAsync();
+
+            return Ok(new
+            {
+                message = "Delete request sent for approval",
+                employeeId = employee.Id
+            });
+        }
+
+        [HttpPost("delete-approved/{employeeId}")]
+        public async Task<IActionResult> DeleteApproved(
+    int employeeId,
+    [FromQuery] int adminId,
+    [FromQuery] bool approve)
+        {
+            var employee = await _context.Employees
+                .Include(e => e.EmployeeDocuments)
+                .FirstOrDefaultAsync(e => e.Id == employeeId);
+
+            if (employee == null)
+                return NotFound(new { message = "Employee not found" });
+
+            if (!employee.IsDeleteRequested)
+                return BadRequest(new { message = "No delete request found" });
+
+            if (approve)
+            {
+                // ✅ Soft delete employee
+                employee.IsDeleted = true;
+                employee.DeleteApprovedBy = adminId;
+                employee.DeleteApprovedOn = DateTime.Now;
+
+                // ✅ Soft delete all documents
+                foreach (var doc in employee.EmployeeDocuments)
+                {
+                    doc.IsDeleted = true;
+                    doc.DeletedBy = adminId;
+                    doc.DeletedOn = DateTime.Now;
+                }
+            }
+
+            // Reset request flag whether approved or rejected
+            employee.IsDeleteRequested = false;
+
+            await _context.SaveChangesAsync();
+
+            return Ok(new
+            {
+                message = approve
+                    ? "Employee deleted successfully"
+                    : "Delete request rejected",
+                employeeId = employee.Id
+            });
+        }
+
 
     }
 }

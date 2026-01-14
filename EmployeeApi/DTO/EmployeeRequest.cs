@@ -11,11 +11,26 @@
         public bool? IsApproved { get; set; }
         public string? Remarks { get; set; }
         public int? createdBy { get; set; }
-
+        public string subject { get; set; } = string.Empty;
+        public string ToYear { get; set; } = string.Empty;
         public DateTime? createdOn { get; set; }
         public int? ApprovedBy { get; set; }
         public DateTime? ModifiedOn { get; set; }
         public int? ModifiedBy { get; set; }
+        public List<IFormFile>? Documents { get; set; }
+    }
+
+    public class AddEmployeeRequest
+    {
+        public string EmployeeName { get; set; } = string.Empty;
+        public string Department { get; set; } = string.Empty;
+        public string Designation { get; set; } = string.Empty;
+        public string Gender { get; set; } = string.Empty;
+        public string? Subject { get; set; }
+        public string Address { get; set; } = string.Empty;
+        public string ToYear { get; set; } = string.Empty;
+        public int? createdBy { get; set; }
+
         public List<IFormFile>? Documents { get; set; }
     }
 
@@ -30,6 +45,8 @@
         public string Address { get; set; }
         public bool? isApproved { get; set; }
         public string Remarks { get; set; }
+        public string subject { get; set; }
+        public string ToYear { get; set; }
         public List<EmployeeDocumentResponse> EmployeeDocuments { get; set; } = new();
     }
 

@@ -19,6 +19,9 @@ public partial class EmployeeDocument
     public int? CreatedBy { get; set; }
 
     public DateTime? CreatedOn { get; set; }
+    public bool IsDeleted { get; set; } = false;
+    public int? DeletedBy { get; set; }
+    public DateTime? DeletedOn { get; set; }
 
     public virtual Employee Employee { get; set; } = null!;
 }
