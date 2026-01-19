@@ -8,6 +8,8 @@ public partial class EmployeeDocument
     public int Id { get; set; }
 
     public int EmployeeId { get; set; }
+    public string? FileUniqueId { get; set; }
+    public int DocumentSequence { get; set; }
 
     public string? FileName { get; set; }
 
@@ -22,6 +24,8 @@ public partial class EmployeeDocument
     public bool IsDeleted { get; set; } = false;
     public int? DeletedBy { get; set; }
     public DateTime? DeletedOn { get; set; }
+
+    public int? pageCount { get; set; }
 
     public virtual Employee Employee { get; set; } = null!;
 }

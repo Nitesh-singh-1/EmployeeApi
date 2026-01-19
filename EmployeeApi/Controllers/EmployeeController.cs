@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration.UserSecrets;
 using Microsoft.VisualBasic;
 using System.Linq;
 using System.Text;
+using PdfSharpCore.Pdf.IO;
 
 namespace EmployeeApi.Controllers
 {
@@ -65,6 +66,8 @@ namespace EmployeeApi.Controllers
                     ToYear = e.toYear,
                     isDeleteRequested = e.IsDeleteRequested,
                     isDeleted = e.IsDeleted,
+                    fileUniqueId = e.FileUniqueId,
+                    TotalpageCount = e.TotalpageCount,
 
 
                     employeeDocuments = e.EmployeeDocuments.Select(doc => new
@@ -73,6 +76,7 @@ namespace EmployeeApi.Controllers
                         EmployeeId = doc.EmployeeId,
                         FileName = doc.FileName,
                         FilePath = doc.FilePath,
+                        //FileUniqueId = doc.file
                     }).ToList()
                 })
                 .ToList();
@@ -149,6 +153,8 @@ namespace EmployeeApi.Controllers
              remarks = e.Remarks,
              subject = e.Subject,
              ToYear = e.toYear,
+             isDeleteRequested = e.IsDeleteRequested,
+             isDeleted = e.IsDeleted,
              employeeDocuments = e.EmployeeDocuments.Select(doc => new
              {
                  Id = doc.Id,
@@ -200,21 +206,33 @@ namespace EmployeeApi.Controllers
         }
 
         [HttpPost("add")]
-        public async Task<IActionResult> AddEmployee([FromForm] AddEmployeeRequest employeeRequest, List<IFormFile>? documents)
+        public async Task<IActionResult> AddEmployee(
+     [FromForm] AddEmployeeRequest employeeRequest,
+     List<IFormFile>? documents)
         {
             if (employeeRequest == null)
                 return BadRequest("Invalid employee data");
 
+            // 🔑 One Unique ID = One File
+           // Guid fileUniqueId = Guid.NewGuid();
+
             var employee = new Employee
             {
+                //FileUniqueId = fileUniqueId,
                 EmployeeName = employeeRequest.EmployeeName,
                 Department = employeeRequest.Department,
                 Designation = employeeRequest.Designation,
                 Subject = employeeRequest.Subject,
-                //Age = employeeRequest.Age,
                 Gender = "Gender",
-                Address = employeeRequest.Address,
-                toYear = employeeRequest.ToYear,
+                //Address = employeeRequest.Address,
+                //toYear = employeeRequest.ToYear,
+                Address = string.IsNullOrWhiteSpace(employeeRequest.Address)
+                ? null
+                : employeeRequest.Address,
+
+                toYear = string.IsNullOrWhiteSpace(employeeRequest.ToYear)
+                ? null
+                : employeeRequest.ToYear,
                 createdOn = DateTime.Now,
                 createdBy = employeeRequest.createdBy,
             };
@@ -222,42 +240,60 @@ namespace EmployeeApi.Controllers
             _context.Employees.Add(employee);
             await _context.SaveChangesAsync();
 
-            string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads", "resumes");
+            employee.FileUniqueId = employee.Id.ToString("D7");
+
+            _context.Entry(employee)
+        .Property(e => e.FileUniqueId)
+        .IsModified = true;
+
+            await _context.SaveChangesAsync();
+
+            string fileUniqueId = employee.FileUniqueId;
+
+            string uploadsFolder = Path.Combine(
+                Directory.GetCurrentDirectory(),
+                "wwwroot",
+                "uploads",
+                fileUniqueId
+            );
+
             Directory.CreateDirectory(uploadsFolder);
+
+            int documentSequence = 1;
 
             if (documents != null && documents.Count > 0)
             {
                 foreach (var file in documents)
                 {
-                    if (file.Length > 0)
+                    if (file.Length == 0) continue;
+
+                    string extension = Path.GetExtension(file.FileName);
+                    string storedFileName = $"{fileUniqueId}-{documentSequence}{extension}";
+                    string filePath = Path.Combine(uploadsFolder, storedFileName);
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
                     {
-
-                        string uniqueId = Guid.NewGuid().ToString();
-                        string pdfFileName = $"{uniqueId}_{Path.GetFileName(file.FileName)}";
-                        string pdfPath = Path.Combine(uploadsFolder, pdfFileName);
-
-                        using (var stream = new FileStream(pdfPath, FileMode.Create))
-                        {
-                            await file.CopyToAsync(stream);
-                        }
-
-                        // Extract text from PDF and save as .txt
-                        string extractedText = ExtractTextFromPdf(pdfPath);
-                        string textFilePath = Path.Combine(uploadsFolder, $"{Path.GetFileNameWithoutExtension(pdfFileName)}.txt");
-                        await System.IO.File.WriteAllTextAsync(textFilePath, extractedText);
-
-                        // Save reference in DB
-                        var document = new EmployeeDocument
-                        {
-                            EmployeeId = employee.Id,
-                            FileName = pdfFileName,
-                            FilePath = $"/uploads/resumes/{pdfFileName}",
-                            UploadedOn = DateTime.Now,
-                            CreatedBy = employee.createdBy,
-                            CreatedOn = DateTime.Now,
-                        };
-                        _context.EmployeeDocuments.Add(document);
+                        await file.CopyToAsync(stream);
                     }
+
+                    
+                    //await System.IO.File.WriteAllTextAsync(textFilePath, extractedText);
+
+                    var document = new EmployeeDocument
+                    {
+                        EmployeeId = employee.Id,
+                        FileUniqueId = fileUniqueId,
+                        DocumentSequence = documentSequence,
+                        FileName = storedFileName,
+                        FilePath = $"/uploads/{fileUniqueId}/{storedFileName}",
+                        UploadedOn = DateTime.Now,
+                        CreatedBy = employee.createdBy,
+                        CreatedOn = DateTime.Now
+                    };
+
+                    _context.EmployeeDocuments.Add(document);
+
+                    documentSequence++;
                 }
 
                 await _context.SaveChangesAsync();
@@ -265,8 +301,10 @@ namespace EmployeeApi.Controllers
 
             return Ok(new
             {
-                message = "Added successfully!",
-                employeeId = employee.Id
+                message = "File created successfully!",
+                fileUniqueId = fileUniqueId,
+                employeeId = employee.Id,
+                totalDocuments = documentSequence - 1
             });
         }
 
@@ -298,12 +336,18 @@ namespace EmployeeApi.Controllers
         }
 
         [HttpPost("edit/{id}")]
-        public async Task<IActionResult> EditEmployee(int id, [FromForm] EmployeeRequest model, List<IFormFile>? documents)
+        public async Task<IActionResult> EditEmployee(
+     int id,
+     [FromForm] EmployeeRequest model,
+     List<IFormFile>? documents)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var employee = await _context.Employees.FindAsync(id);
+            var employee = await _context.Employees
+                .Include(e => e.EmployeeDocuments)
+                .FirstOrDefaultAsync(e => e.Id == id);
+
             if (employee == null)
                 return NotFound(new { message = "Employee not found." });
 
@@ -311,59 +355,73 @@ namespace EmployeeApi.Controllers
 
             try
             {
-                //  Update basic info
+                // 🔹 Update employee fields (MATCH ADD API)
                 employee.EmployeeName = model.EmployeeName;
                 employee.Department = model.Department;
                 employee.Designation = model.Designation;
-                employee.Age = model.Age;
-                employee.Gender = model.Gender;
                 employee.Subject = model.subject;
                 employee.Address = model.Address;
                 employee.toYear = model.ToYear;
                 employee.ModifiedBy = model.ModifiedBy;
                 employee.ModifiedOn = DateTime.Now;
-                _context.Employees.Update(employee);
+
+               // _context.Employees.Update(employee);
                 await _context.SaveChangesAsync();
 
-                //  Save new uploaded documents
-                string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads", "resumes");
+                string fileUniqueId = employee.FileUniqueId!;
+                if (string.IsNullOrWhiteSpace(fileUniqueId))
+                    throw new Exception("FileUniqueId missing.");
+
+
+                int documentSequence =
+                    employee.EmployeeDocuments.Any()
+                        ? employee.EmployeeDocuments.Max(d => d.DocumentSequence) + 1
+                        : 1;
+
+                string uploadsFolder = Path.Combine(
+                    Directory.GetCurrentDirectory(),
+                    "wwwroot",
+                    "uploads",
+                    fileUniqueId
+                );
+
                 Directory.CreateDirectory(uploadsFolder);
 
+                // 🔹 Save new documents (same as ADD API)
                 if (documents != null && documents.Count > 0)
                 {
                     foreach (var file in documents)
                     {
-                        if (file.Length > 0)
+                        if (file.Length == 0) continue;
+
+                        string extension = Path.GetExtension(file.FileName);
+                        string storedFileName =
+                            $"{fileUniqueId}-{documentSequence}{extension}";
+
+                        string filePath = Path.Combine(uploadsFolder, storedFileName);
+
+                        using (var stream = new FileStream(filePath, FileMode.Create))
                         {
-                            string uniqueId = Guid.NewGuid().ToString();
-                            string pdfFileName = $"{uniqueId}_{Path.GetFileName(file.FileName)}";
-                            string pdfPath = Path.Combine(uploadsFolder, pdfFileName);
-
-                            // Save file
-                            using (var stream = new FileStream(pdfPath, FileMode.Create))
-                            {
-                                await file.CopyToAsync(stream);
-                            }
-
-                            // Extract text from PDF
-                            string extractedText = ExtractTextFromPdf(pdfPath);
-                            string textFilePath = Path.Combine(uploadsFolder, $"{Path.GetFileNameWithoutExtension(pdfFileName)}.txt");
-                            await System.IO.File.WriteAllTextAsync(textFilePath, extractedText);
-
-                            // Save reference in DB
-                            var document = new EmployeeDocument
-                            {
-                                EmployeeId = employee.Id,
-                                FileName = pdfFileName,
-                                FilePath = $"/uploads/resumes/{pdfFileName}",
-                                UploadedOn = DateTime.Now,
-                                CreatedBy = employee.createdBy,
-                                CreatedOn = DateTime.Now,
-
-                            };
-
-                            _context.EmployeeDocuments.Add(document);
+                            await file.CopyToAsync(stream);
                         }
+
+                        // Optional: extract text
+                        // string extractedText = ExtractTextFromPdf(filePath);
+
+                        var document = new EmployeeDocument
+                        {
+                            EmployeeId = employee.Id,
+                            FileUniqueId = fileUniqueId,
+                            DocumentSequence = documentSequence,
+                            FileName = storedFileName,
+                            FilePath = $"/uploads/{fileUniqueId}/{storedFileName}",
+                            UploadedOn = DateTime.Now,
+                            CreatedBy = employee.createdBy,
+                            CreatedOn = DateTime.Now
+                        };
+
+                        _context.EmployeeDocuments.Add(document);
+                        documentSequence++;
                     }
 
                     await _context.SaveChangesAsync();
@@ -374,7 +432,9 @@ namespace EmployeeApi.Controllers
                 return Ok(new
                 {
                     message = "Employee updated successfully!",
-                    employeeId = employee.Id
+                    employeeId = employee.Id,
+                    fileUniqueId = fileUniqueId,
+                    totalDocuments = documentSequence - 1
                 });
             }
             catch (Exception ex)
@@ -387,6 +447,117 @@ namespace EmployeeApi.Controllers
                 });
             }
         }
+
+        //    [HttpPost("edit/{id}")]
+        //    public async Task<IActionResult> EditEmployee(
+        //int id,
+        //[FromForm] EmployeeRequest model,
+        //List<IFormFile>? documents)
+        //    {
+        //        if (!ModelState.IsValid)
+        //            return BadRequest(ModelState);
+
+        //        var employee = await _context.Employees
+        //            .Include(e => e.EmployeeDocuments)
+        //            .FirstOrDefaultAsync(e => e.Id == id);
+
+        //        if (employee == null)
+        //            return NotFound(new { message = "Employee not found." });
+
+        //        using var transaction = await _context.Database.BeginTransactionAsync();
+
+        //        try
+        //        {
+        //            // 🔹 Update employee fields
+        //            employee.EmployeeName = model.EmployeeName;
+        //            employee.Department = model.Department;
+        //            employee.Designation = model.Designation;
+        //            employee.Subject = model.subject;
+        //            employee.Address = model.Address;
+        //            employee.toYear = model.ToYear;
+        //            employee.ModifiedBy = model.ModifiedBy;
+        //            employee.ModifiedOn = DateTime.Now;
+
+        //            await _context.SaveChangesAsync();
+
+        //            // 🔑 IMPORTANT: reuse existing FileUniqueId
+        //            string fileUniqueId = employee.FileUniqueId!;
+
+        //            if (string.IsNullOrWhiteSpace(fileUniqueId))
+        //                throw new Exception("FileUniqueId missing for employee.");
+
+        //            // 🔢 Continue document sequence
+        //            int documentSequence =
+        //                employee.EmployeeDocuments.Any()
+        //                    ? employee.EmployeeDocuments.Max(d => d.DocumentSequence) + 1
+        //                    : 1;
+
+        //            string uploadsFolder = Path.Combine(
+        //                Directory.GetCurrentDirectory(),
+        //                "wwwroot",
+        //                "uploads",
+        //                fileUniqueId
+        //            );
+
+        //            Directory.CreateDirectory(uploadsFolder);
+
+        //            // 🔹 Save new documents
+        //            if (documents != null && documents.Count > 0)
+        //            {
+        //                foreach (var file in documents)
+        //                {
+        //                    if (file.Length == 0) continue;
+
+        //                    string extension = Path.GetExtension(file.FileName);
+        //                    string storedFileName =
+        //                        $"{fileUniqueId}-{documentSequence}{extension}";
+
+        //                    string filePath = Path.Combine(uploadsFolder, storedFileName);
+
+        //                    using var stream = new FileStream(filePath, FileMode.Create);
+        //                    await file.CopyToAsync(stream);
+
+        //                    var document = new EmployeeDocument
+        //                    {
+        //                        EmployeeId = employee.Id,
+        //                        FileUniqueId = fileUniqueId,
+        //                        DocumentSequence = documentSequence,
+        //                        FileName = storedFileName,
+        //                        FilePath = $"/uploads/{fileUniqueId}/{storedFileName}",
+        //                        UploadedOn = DateTime.Now,
+        //                        CreatedBy = employee.createdBy,
+        //                        CreatedOn = DateTime.Now
+        //                    };
+
+        //                    _context.EmployeeDocuments.Add(document);
+        //                    documentSequence++;
+        //                }
+
+        //                await _context.SaveChangesAsync();
+        //            }
+
+        //            await transaction.CommitAsync();
+
+        //            return Ok(new
+        //            {
+        //                message = "Employee updated successfully!",
+        //                employeeId = employee.Id,
+        //                fileUniqueId = fileUniqueId,
+        //                totalDocuments = documentSequence - 1
+        //            });
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            await transaction.RollbackAsync();
+        //            return StatusCode(500, new
+        //            {
+        //                message = "Failed to update employee. Transaction rolled back.",
+        //                error = ex.Message
+        //            });
+        //        }
+        //    }
+
+
 
 
         [HttpDelete("delete/{id}")]
@@ -428,39 +599,63 @@ namespace EmployeeApi.Controllers
             });
         }
 
-        [HttpDelete("deleteImg/{id}")]
-        public async Task<IActionResult> DeleteImage(int id)
+        [HttpDelete("deleteDoc/{id}")]
+        public async Task<IActionResult> DeleteDocument(int id)
         {
-
             var doc = await _context.EmployeeDocuments.FindAsync(id);
+
             if (doc == null)
-                return NotFound(new { message = "Document Not Found." });
+                return NotFound(new { message = "Document not found." });
 
-            // Physical file path
-            string fullPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", doc.FilePath.TrimStart('/'));
+            using var transaction = await _context.Database.BeginTransactionAsync();
 
-            if (System.IO.File.Exists(fullPath))
+            try
             {
-                System.IO.File.Delete(fullPath);
+                // Build absolute physical path from stored FilePath
+                string fullPath = Path.Combine(
+                    Directory.GetCurrentDirectory(),
+                    "wwwroot",
+                    doc.FilePath.TrimStart('/')
+                );
+
+                // 🔹 Delete physical file (PDF)
+                if (System.IO.File.Exists(fullPath))
+                {
+                    System.IO.File.Delete(fullPath);
+                }
+
+                // 🔹 Delete extracted text file IF it exists
+                string txtFilePath = Path.ChangeExtension(fullPath, ".txt");
+                if (System.IO.File.Exists(txtFilePath))
+                {
+                    System.IO.File.Delete(txtFilePath);
+                }
+
+                // 🔹 Remove DB record
+                _context.EmployeeDocuments.Remove(doc);
+                await _context.SaveChangesAsync();
+
+                await transaction.CommitAsync();
+
+                return Ok(new
+                {
+                    message = "Document deleted successfully",
+                    documentId = id,
+                    employeeId = doc.EmployeeId,
+                    fileUniqueId = doc.FileUniqueId
+                });
             }
-
-            // Delete extracted text file
-            string txtFilePath = Path.ChangeExtension(fullPath, ".txt");
-            if (System.IO.File.Exists(txtFilePath))
+            catch (Exception ex)
             {
-                System.IO.File.Delete(txtFilePath);
+                await transaction.RollbackAsync();
+                return StatusCode(500, new
+                {
+                    message = "Failed to delete document",
+                    error = ex.Message
+                });
             }
-
-            _context.EmployeeDocuments.Remove(doc);
-            await _context.SaveChangesAsync();
-            return Ok(new
-            {
-                message = "Document Deleted Successfully",
-                documentId = id,
-                employeeId = doc.EmployeeId
-            });
-
         }
+
 
         [HttpGet("ViewEmployeeDocument/{id}")]
         public async Task<IActionResult> ViewEmployeeDocument(int id, int? docId = null)
@@ -512,54 +707,96 @@ namespace EmployeeApi.Controllers
 
             return PhysicalFile(fullPath, contentType);
         }
-
-        [HttpGet("SearchResumes")]
-        public IActionResult SearchResumes([FromQuery] string keyword)
+        [HttpGet("SearchFileMaster")]
+        public async Task<IActionResult> SearchFileMaster([FromQuery] string keyword)
         {
             if (string.IsNullOrWhiteSpace(keyword))
                 return BadRequest(new { message = "Keyword is required." });
 
+            keyword = keyword.Trim();
+
             try
             {
-                string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads", "resumes");
-
-                if (!Directory.Exists(uploadsFolder))
-                    return NotFound(new { message = "Resume folder not found." });
-
-                var txtFiles = Directory.GetFiles(uploadsFolder, "*.txt", SearchOption.TopDirectoryOnly);
-
-                var matchingFiles = new List<object>();
-
-                foreach (var txtFile in txtFiles)
-                {
-                    string content = System.IO.File.ReadAllText(txtFile);
-
-                    if (content.Contains(keyword, StringComparison.OrdinalIgnoreCase))
+                // 1️⃣ Search FILE MASTER (Employees table)
+                var matchedFiles = await _context.Employees
+                    .Where(e =>
+                        (e.EmployeeName ?? "").Contains(keyword) ||
+                        (e.Department ?? "").Contains(keyword) ||
+                        (e.Designation ?? "").Contains(keyword) ||
+                        (e.Subject ?? "").Contains(keyword) ||
+                        (e.Address ?? "").Contains(keyword) ||
+                        (e.toYear ?? "").ToString().Contains(keyword)
+                    )
+                    .Select(e => new
                     {
-                        string baseName = Path.GetFileNameWithoutExtension(txtFile);
-                        string pdfFile = Directory.GetFiles(uploadsFolder, baseName + ".pdf").FirstOrDefault();
+                        e.FileUniqueId,
+                        e.EmployeeName,
+                        e.Department,
+                        e.Designation,
+                        e.Subject,
+                        e.Address,
+                        e.toYear
+                    })
+                    .ToListAsync();   // ✅ RETURNS LIST (duplicates allowed)
 
-                        if (pdfFile != null)
+                if (!matchedFiles.Any())
+                    return NotFound(new { message = "No matching files found." });
+
+                var fileIds = matchedFiles
+                    .Select(f => f.FileUniqueId)
+                    .ToList();
+
+                // 2️⃣ Fetch ALL documents for matched files
+                var documents = await _context.EmployeeDocuments
+                    .Where(d => fileIds.Contains(d.FileUniqueId))
+                    .OrderBy(d => d.FileUniqueId)
+                    .ThenBy(d => d.DocumentSequence)
+                    .Select(d => new
+                    {
+                        d.FileUniqueId,
+                        d.DocumentSequence,
+                        d.FileName,
+                        d.FilePath
+                    })
+                    .ToListAsync();
+
+                // 3️⃣ Combine FILE + DOCUMENTS (NO GROUPING / NO DISTINCT)
+                var result = matchedFiles.Select(file => new
+                {
+                    FileUniqueId = file.FileUniqueId,
+                    FileDetails = new
+                    {
+                        file.EmployeeName,
+                        file.Department,
+                        file.Designation,
+                        file.Subject,
+                        file.Address,
+                        file.toYear
+                    },
+                    Documents = documents
+                        .Where(d => d.FileUniqueId == file.FileUniqueId)
+                        .Select(d => new
                         {
-                            matchingFiles.Add(new
-                            {
-                                ResumeName = Path.GetFileName(pdfFile),
-                                ResumeUrl = $"/uploads/resumes/{Path.GetFileName(pdfFile)}"
-                            });
-                        }
-                    }
-                }
+                            d.DocumentSequence,
+                            d.FileName,
+                            d.FilePath
+                        })
+                        .ToList()
+                })
+                .ToList(); // ✅ ENSURE LIST OUTPUT
 
-                if (matchingFiles.Count == 0)
-                    return NotFound(new { message = "No matching resumes found." });
-
-                return Ok(matchingFiles);
+                return Ok(result);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { message = "An error occurred while searching resumes.", error = ex.Message });
+                return StatusCode(500, new
+                {
+                    message = "An error occurred while searching file master.",
+                    error = ex.Message
+                });
             }
         }
+
 
         [HttpPost("delete-requested/{employeeId}")]
         public async Task<IActionResult> DeleteRequested(int employeeId, [FromQuery] int userId)
@@ -630,6 +867,93 @@ namespace EmployeeApi.Controllers
                     : "Delete request rejected",
                 employeeId = employee.Id
             });
+        }
+
+
+        private int GetPdfPageCount(IFormFile file)
+        {
+            using var memoryStream = new MemoryStream();
+            file.CopyTo(memoryStream);
+            memoryStream.Position = 0;
+
+            using var document = PdfReader.Open(
+                memoryStream,
+                PdfDocumentOpenMode.ReadOnly
+            );
+
+            return document.PageCount;
+        }
+
+        [HttpPost("upload-documents/{id}")]
+        public async Task<IActionResult> UploadDocuments(
+    int id,
+    List<IFormFile> documents)
+        {
+            var employee = await _context.Employees
+                .Include(e => e.EmployeeDocuments)
+                .FirstOrDefaultAsync(e => e.Id == id);
+
+            if (employee == null)
+                return NotFound();
+
+            string fileUniqueId = employee.FileUniqueId!;
+            const long MAX_SIZE = 20 * 1024 * 1024; // 20 MB
+
+            int documentSequence =
+                employee.EmployeeDocuments.Any()
+                    ? employee.EmployeeDocuments.Max(d => d.DocumentSequence) + 1
+                    : 1;
+
+            string uploadsFolder = Path.Combine(
+                Directory.GetCurrentDirectory(),
+                "wwwroot",
+                "uploads",
+                fileUniqueId
+            );
+
+            Directory.CreateDirectory(uploadsFolder);
+            int totalPagesAdded = 0;
+
+            foreach (var file in documents)
+            {
+                if (file.Length == 0) continue;
+                if (file.Length > MAX_SIZE)
+                    return BadRequest($"File {file.FileName} exceeds 20 MB.");
+
+                string ext = Path.GetExtension(file.FileName);
+                string fileName = $"{fileUniqueId}-{documentSequence}{ext}";
+                string path = Path.Combine(uploadsFolder, fileName);
+
+                using var stream = new FileStream(path, FileMode.Create);
+                await file.CopyToAsync(stream);
+
+                int pageCount = 0;
+
+                if (ext == ".pdf")
+                {
+                    pageCount = GetPdfPageCount(file);
+                    totalPagesAdded += pageCount;
+                }
+
+                _context.EmployeeDocuments.Add(new EmployeeDocument
+                {
+                    EmployeeId = employee.Id,
+                    FileUniqueId = fileUniqueId,
+                    DocumentSequence = documentSequence,
+                    FileName = fileName,
+                    FilePath = $"/uploads/{fileUniqueId}/{fileName}",
+                    pageCount = pageCount,
+                    UploadedOn = DateTime.Now,
+                    CreatedBy = employee.createdBy,
+                    CreatedOn = DateTime.Now
+                });
+
+                documentSequence++;
+            }
+            employee.TotalpageCount += totalPagesAdded;
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Documents uploaded" , addedPages = totalPagesAdded, totalPages = employee.TotalpageCount });
         }
 
 

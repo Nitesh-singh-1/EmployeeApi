@@ -1,0 +1,655 @@
+Welcome
+Instructions
+The Dynatrace Platform
+Monitoring & Infrastructure Observability
+Notebooks & Dashboards
+Business Analytics and DEM
+Data, Reporting & Analysis
+DQL (Dynatrace Query Language)
+Security
+Automation
+Associate Certification Learning Path
+Ingestion
+Other
+Welcome to the Dynatrace Associate Certification Learning Path. 
+The Dynatrace Associate Certification is the starting point for all certification programs at
+Dynatrace and validates that an observability and security practitioner can relay the value of
+Dynatrace and apply base-level knowledge and skills in all modules of the Dynatrace platform. 
+Upon completion of this learning path you will be able to: 
+Lesson 1 of 12
+Welcome
+Describe the value Dynatrace brings to observability and security though
+the various capabilities available. 
+Demonstrate the ability to navigate the Dynatrace platform at a high￾level. 
+Navigate through a monitored business application, starting from the
+user interface and through all layers of the application, including
+services, database and infrastructure.
+Navigate Smartscape and infrastructure health.
+Analyze a problem identified by Dynatrace, showing root cause and
+impact.
+Explain how to use Notebooks and Dashboards to investigate a problem,
+determine the root cause, share results with stakeholders, and
+proactively monitor systems to prevent the issue going forward.
+Explain how Dynatrace could help remediate problems through
+workflows and automation.
+Describe, at a high-level, the function and purpose of DQL.
+This learning path is the key to your success in achieving the required skills and knowledge
+needed for the Associate Certification. We recommend that you follow along in order to best
+prepare for your certification exam.
+Prerequisites
+Before embarking on the Dynatrace Associate Learning Path and scheduling the exam, ensure
+you meet the following prerequisites: 
+Lesson 2 of 12
+Instructions
+Familiarity with Service Oriented Application (SOA) Architectures.
+Understanding of Application Servers such as WebSphere, WebLogic,
+JBoss, Tomcat, IIS, etc.
+Knowledge of the structures of mobile and web applications and their
+underlying hosting architecture, including databases, networks, and
+processes.
+General familiarity with application performance metrics.
+Proficiency with operating systems like Windows, UNIX, VMware, etc.
+Understanding of Cloud and New Stack Technologies such as Azure,
+Docker, Kubernetes, Cloud Foundry, IBM Cloud, OpenStack, OpenShift,
+Learning Path Overview
+To prepare for the Dynatrace Associate Learning Certification exam, please complete the
+following:
+Exam Details
+Before embarking on the Dynatrace Associate Learning Path and scheduling the exam, ensure
+you meet the following prerequisites: 
+etc.
+Six-months of experience using the Dynatrace Platform
+(Recommended).
+All learning path sections: Go through every section of the Dynatrace
+Associate Learning Path meticulously.
+Review buttons and subtopics: Ensure all buttons and subtopics within
+each section are thoroughly reviewed to grasp the nuances of the
+Dynatrace platform comprehensively.
+Complete recommended action items: Pay special attention to the
+"call to action" section at the end of each lesson and execute the
+recommended action items to reinforce your learning.
+Schedule your exam: Once you feel confident in your understanding of
+the material and have completed all sections, schedule your exam to
+become a certified Dynatrace Associate.
+The exam consists of 60 written questions and 10-15 practical
+questions.
+Exam Support
+Equipment Requirements
+This is everything you will need to begin testing with ProctorU.
+VISIT WEBSITE
+How to Test Your Equipment
+We recommend testing your equipment prior to exam day. Be sure to test the equipment you are planning
+to use on exam day so you can troubleshoot any issues.
+VISIT WEBSITE
+Exam Day FAQs
+Some of the most commonly asked questions by test-takers.
+The written section includes both multiple-choice and multiple￾response questions.
+For multiple-response questions, partial percentage for each correct
+answer is given, and the same percentage is deducted for an incorrect
+choice.
+Exam is proctored by ProctorU and proctoring is provided in English only.
+The practical section is open book.
+VISIT WEBSITE
+Accommodation
+If you require accommodation to access the exam, please create a support ticket to request
+assistance. Dynatrace is committed to ensuring exam accessibility for all individuals. 
+This section will focus on:
+Lesson 3 of 12
+The Dynatrace Platform
+The Dynatrace Platform
+Dynatrace is a revolutionary platform that delivers
+analytics and automation for unified observability and
+security. This is made possible by fully integrating
+platform technologies to help you to do amazing things
+with data. 
+Understanding the Dynatrace Platform Capabilities.
+Navigating the Dynatrace Web UI.
+The Dynatrace Platform
+Dynatrace is a software intelligence platform that provides unified observability for monitoring,
+analyzing, and optimizing software development, security, and business analytics. It leverages
+advanced AI to automate discovery, analysis, and key business processes, providing precise
+answers and intelligent automation. Key features include:
+Dynatrace helps organizations predict, prevent, and resolve issues before they impact
+customers, driving better business outcomes.
+Dynatrace Web User Interface (UI)
+The Dynatrace Web User Interface (UI) is designed to be easy to use and navigate, enhancing
+the user experience.
+Review the resources to learn about navigating the Dynatrace User Interface (UI). 
+Accessing Dynatrace Support and Resources.
+Optimizing Digital Experiences.
+Observability: Real-time monitoring and visualization of application
+performance & infrastructure.
+Security: Enterprise-grade data privacy and compliance management.
+Automation: Automated discovery and analysis using AI-driven
+insights.
+Integration: Supports various cloud, container, and technology
+integrations.
+Navigating the Interface
+Estimated Time: 3 mins.
+WATCH VIDEO
+Dynatrace Docs: Navigate the Dynatrace Platform
+Estimated Time: 10 mins.
+READ DOCUMENT
+Platform Capabilities
+Dynatrace enhances observability, security, and automation with real-time monitoring, AI￾driven insights, and automated workflows. It supports application performance management,
+infrastructure monitoring, digital experience tracking, and integrates with cloud platforms and
+container technologies. Additionally, it offers business analytics for data-driven decision￾making.
+Get to know more about basic capabilities on the Dynatrace Platform page.
+Dynatrace Docs: What is Dynatrace?
+READ DOCUMENT
+Stay Informed & Empowered
+As the Dynatrace Platform continues to grow and evolve, it's important to stay informed about
+the latest tools and technologies. You can explore new features and updates through
+Dynatrace Documentation.
+For support and enablement, the Dynatrace Support Center provides resources, including
+documentation, community discussions, on-demand courses, live training, and certifications.
+This ensures you have access to the latest information and expert guidance to maximize the
+platform's capabilities.
+The Dynatrace Hub is a marketplace for apps, extensions, and technologies that enhance the
+platform's functionality. Here, you can browse, install, and manage different solutions to
+address your observability needs. With the Hub, you can stay to stay up-to-date with the latest
+innovations and easily integrate new capabilities into your environment.
+Visit, explore, and bookmark each support page.
+Dynatrace Documentation
+VISIT PAGE
+Dynatrace Hub
+VISIT PAGE
+Dynatrace Support Center
+VISIT PAGE
+System Resilience & Optimal Digital Experiences
+After learning about the Dynatrace platform's capabilities, user interface, and support
+resources, we will explore strategies for maintaining system resilience and ensuring optimal
+digital experiences. These strategies help you proactively address issues before they impact
+customers, ensuring smooth interactions and preventing costly outages.
+Explore the resources to learn about system resilience and optimizing digital experiences
+for customers.
+Delivering An Excellent Digital Experience for Customers in a Complex Digital World 
+Estimated Time: 5 mins.
+READ BLOG
+Mastering Chaos Engineering Experiments with Gremlin and Dynatrace
+Estimated Time: 1 hour 17 mins.
+WATCH WEBINAR
+Consider your current IT environment then complete the following:
+Call to Action
+To help you gain hands on experience in this subject area
+it is recommended that you take the following actions.
+What questions do you need to answer day-to-day?  Write down your
+answer and explore how you can answer them as you're going through
+this Learning Path. 
+1
+If you currently use Dynatrace, how are you using it? Write down your
+answer and explore how you can answer them as you're going through
+this Learning Path. 
+2
+Start exploring! Try the Dynatrace Playground to get started, and
+navigate the UI.
+3
+Log in with a Dynatrace user account, or create a trial account to get
+started.
+This section will focus on:
+Lesson 4 of 12
+Monitoring & Infrastructure Observability
+Monitoring & Infrastructure Observability
+Monitoring is a foundational element of the Dynatrace
+Platform, providing continuous, real-time visibility into
+the performance and health of applications and
+infrastructure. 
+Understanding Dynatrace's Monitoring & Observability.
+Optimizing IT Operations.
+Using Dynatrace Apps.
+Leveraging AI-Powered Insights.
+Monitoring & Infrastructure Observability
+Dynatrace provides monitoring and infrastructure observability by collecting and analyzing
+data from every layer of the technology stack, from user interactions to backend processes.
+This continuous stream of information allows you to detect anomalies, track performance
+trends, and identify potential issues before they impact the user experience.
+Dynatrace Apps
+Dynatrace offers apps that provide extensive monitoring and observability across IT
+environments. These apps automatically discover and monitor components like cloud
+platforms, Kubernetes clusters, and databases, integrating metrics, logs, and traces into a
+unified view. This helps organizations quickly identify issues, optimize resources, and ensure
+system reliability. Through AI-powered insights downtime is reduced and performance is
+improved, making these apps essential for maintaining high-quality user experiences.
+Visit the each resource to learn more about Dynatrace apps.  
+Dynatrace Docs: Dynatrace Apps
+READ DOCUMENT
+Dynatrace App Spotlights
+Estimated Time: 4 hours
+WATCH VIDEOS
+Additional Resources
+Visit each page to learn more about Monitoring & Infrastructure Observability
+Dynatrace Docs: Improve Database Performance (Classic)
+READ DOCUMENT
+Dynatrace Docs: Infrastructure Observability
+READ DOCUMENT
+Dynatrace Docs: Dynatrace OneAgent
+READ DOCUMENT
+Kubernetes Monitoring
+VISIT PAGE
+Call to Action
+To help you gain hands on experience in this subject area
+it is recommended that you take the following actions.
+Use the Dynatrace Playground to complete the following:
+Check out the Kubernetes app. What clusters do you see? Dig into the
+namespaces and workloads in one of the clusters. 
+1
+2 Using the Databases app, put the information into a Notebook.
+In this chapter you will focus on:
+Dashboards & Notebooks
+Dynatrace Notebooks and Dashboards are essential tools for data-driven analytics and real￾time monitoring.
+Lesson 5 of 12
+Notebooks & Dashboards
+Notebooks & Dashboards
+In the Dynatrace Platform, notebooks & dashboards are
+essential tools, enabling streamlined monitoring,
+analysis, and visualization of critical performance
+metrics and insights.
+Understanding Dynatrace Notebooks.
+Using Dashboards and Customizations.
+Notebooks enable custom exploration and visualization of observability data, integrating
+external sources and predictive analytics within interactive documents.
+Dashboards provide continuous monitoring and visualizations of key performance
+metrics.
+Together, they empower users to leverage their data effectively for comprehensive insights and
+proactive management.
+Notebooks
+Learn more about Notebooks using the resources below: 
+Dynatrace Docs: Notebooks
+READ DOCUMENT
+Dynatrace Notebooks Update
+Estimated Time: 40 mins.
+WATCH VIDEO
+Dashboards
+Dashboards are a cornerstone of the Dynatrace Platform, offering visual interfaces that
+provide real-time insights into application and infrastructure performance. By aggregating key
+metrics and data in a clear, customizable format, dashboards allow users to monitor, analyze,
+and troubleshoot issues, easier than ever. Whether tracking response times, identifying
+anomalies, or assessing overall system health, dashboards serve as a centralized hub for
+informed decision-making.
+Visit Dynatrace Docs to learn more about Dashboards.
+Dynatrace Docs: Dashboards
+VISIT PAGE
+Complete the following in the Dynatrace Playground or in your own environment:
+Call to Action
+To help you gain hands on experience in this subject area
+it is recommended that you take the following actions.
+Create a Notebook. Try adding different tiles, like DQL queries and
+markdown tiles. 
+1
+Using what you created in a Notebook, do the same in a Dashboard.
+Consider how the apps are different. What use cases can either app be
+used for? 
+2
+Using the list of day-to-day items you may use Dynatrace for consider
+how Notebooks and Dashboards be used to solve those items.  
+3
+In this chapter you will focus on:
+Lesson 6 of 12
+Business Analytics and DEM
+Business Analytics & DEM
+Business Analytics and Digital Experience Monitoring
+(DEM) provide a unified and visually engaging interface
+for tracking and analyzing key performance indicators
+and user experience metrics. 
+Understanding Business Analytics & DEM.
+Using Business Events.
+Understanding Real User Monitoring (RUM).
+Implementing Synthetic Monitoring.
+Business Analytics & DEM
+Dynatrace helps businesses understand their systems' performance and customer interactions
+by combining data from various sources into easy-to-read, real-time visualizations. Business
+Analytics connects application performance and user experience to business metrics, allowing
+business and IT teams to collaborate with shared insights. This ensures businesses can meet
+their goals and keep customers happy by using Business Analytics and Digital Experience
+Monitoring (DEM) for optimal performance and engagement.
+Business Analytics
+At Dynatrace, Business Analytics connects application performance and user experience to
+business metrics, enabling business and IT teams to collaborate through shared real-time
+perspectives. Business Analytics leverages business events to achieve the precision many
+business use cases demand.
+Visit the resource to learn more about Business Analytics.
+Dynatrace Docs: Business Analytics
+READ DOCUMENT
+Business Events
+Business events are key to Business Analytics and Digital Experience Monitoring (DEM). They
+link application performance and user experience to business metrics, providing precise
+insights for better decision-making. Business events help monitor user interactions, track
+performance, and identify trends.
+Check out each resource to learn more about Business Events.
+What are Business Events?
+Estimated Time: 2 mins.
+WATCH VIDEO
+Digital Experience Monitoring (DEM)
+Digital Experience Monitoring (DEM) provides monitoring of user interactions across web,
+mobile, and other digital touchpoints, ensuring applications are available, functional, and
+performing well. Key components of DEM are Real User Monitoring (RUM) and Synthetic
+Monitoring.
+Check out Dynatrace Docs to learn more about DEM.
+Dynatrace Docs: Digital Experience Monitoring (DEM)
+READ DOCUMENT
+Real User Monitoring (RUM)
+Real User Monitoring (RUM) tracks and analyzes real-time user interactions within
+applications. RUM provides insights into user behavior and performance metrics. This data is
+integrated into the DEM framework and application performance is fed into Business Analytics,
+allowing for a holistic view of the digital experience.
+Check out each resource to learn more about RUM.
+What is Real User Monitoring (RUM)?
+Estimated Time: 8 mins.
+READ BLOG
+Dynatrace Docs: Define Applications for Real User Monitoring (RUM)
+READ DOCUMENT
+Synthetic Monitoring
+Synthetic monitoring simulates user interactions with applications using automated scripts,
+identifying performance issues before they affect real users. This proactive testing provides
+valuable data for Business Analytics, helping understand how performance impacts key
+metrics.
+Check out each resource to learn more about Synthetic Monitoring.
+Dynatrace Docs: Synthetic Monitoring
+VISIT PAGE
+What is Synthetic Monitoring?
+Estimated Time: 10 mins.
+READ BLOG
+Complete the following in the Dynatrace Playground or your own tenant:
+Call to Action
+To help you gain hands on experience in this subject area
+it is recommended that you take the following actions.
+Explore the "Problems" app and look at what Dynatrace automatically
+detects. What does Dynatrace highlight to you when you click into a
+problem? 
+1
+Add a section to a notebook with the query "fetch bizevents". What kind
+of data is returned? 
+2
+In this chapter you will focus on:
+Lesson 7 of 12
+Data, Reporting & Analysis
+Data, Reporting & Analysis
+The Dynatrace Platform offers robust support for data,
+reporting, and analysis, empowering users to gain
+actionable insights and make informed decisions to
+optimize performance and enhance user experience.
+Understanding Dynatrace's AI-driven analytics.
+Monitoring system performance.
+Exploring data with dashboards.
+Exporting data using APIs.
+Analyzing user behavior.
+Analyze, Monitor & Explore Data
+The Dynatrace Platform uses AI and real-time monitoring to analyze data from applications,
+microservices, and infrastructure. It detects unusual behavior and alerts you to potential
+issues before they affect performance.
+The platform monitors every part of the technology stack, from the user experience to the code
+level, collecting data like metrics, traces, and logs. You can track important metrics like
+response times, error rates, and resource use to find and fix performance issues.
+Davis AI, links events and provides context, making it easier to find the root cause of problems.
+You can create custom dashboards and visualizations to explore trends, compare performance
+over time.
+Dashboard Reports 
+Dashboard Reports help you visualize and analyze data from applications, microservices, and
+infrastructure. The dashboards offer interactive visualizations, allowing you to explore trends,
+compare performance over time, and identify root causes. You can subscribe to weekly or
+monthly (or both) reports delivered right to your email.
+Visit Dynatrace Docs to learn how to subscribe to Dynatrace Dashboard Reports.
+Dynatrace Docs: Subscribe to Dynatrace Dashboard Reports
+READ DOCUMENT
+Dashboards API
+Segmenting user sessions.
+Utilizing performance metrics.
+The API makes it easy to integrate with other tools, ensuring seamless data analysis across
+different platforms.
+Visit the resources to learn more about Dashboards API.
+Dynatrace Docs: Dashboards API
+READ DOCUMENT
+Interacting with the Dynatrace APIs using an OAuth Client 
+Estimated Time: 2 mins.
+WATCH VIDEO
+User Analytics
+User analytics provide valuable data on how users interact with applications. It tracks metrics
+like bounce rates, top landing, exit pages, and conversion rates, offering insights into user
+behavior.
+Learn more about user analytics on Dynatrace Docs.
+Dynatrace Docs: User Behavior Analysis
+READ DOCUMENT
+Session Segmentation & User Journey Analysis
+Session segmentation helps track and analyze a users journey (also called session, visit, or
+click path) by breaking interactions into smaller parts. This shows typical user paths, drop-off
+points, and high-engagement sessions.
+Get to know more on Dynatrace Docs.
+Dynatrace Docs: Session Segmentation
+READ DOCUMENT
+Analyze Application Performance
+The Performance analysis section displays various performance metrics for your application.
+By expanding the Review the application overview page, you can access detailed performance
+analysis options. This helps you monitor key metrics, identify issues, and optimize your
+application's performance.
+Get to know more on Dynatrace Docs.
+Dynatrace Docs: Performance Analysis
+READ DOCUMENT
+Understand and Utilize Metrics
+Understanding and using metrics from dashboards helps reveal trends, detect issues, and
+highlight areas for improvement.
+Check out various types of metrics on Dynatrace Docs.
+Dynatrace Docs: Metrics
+READ DOCUMENT
+Dynatrace Docs: Built-in Metrics on Grail
+READ DOCUMENT
+Dynatrace Docs: Metrics Classic
+READ DOCUMENT
+Call to Action
+Complete the following in the Dynatrace Playground or in your own tenant:
+To help you gain hands on experience in this subject area
+it is recommended that you take the following actions.
+Start exploring the RUM data. Notice how the data is accessible in many
+different ways, not just within Notebooks and Dashboards. 
+1
+Explore metric data. You may have already accessed metrics in a
+Notebook or Dashboard, how does a tool like the "Data Explorer" show
+this differently? 
+2
+In this chapter you will focus on:
+DQL (Dynatrace Query Language)
+Lesson 8 of 12
+DQL (Dynatrace Query Language)
+DQL
+DQL (Dynatrace Query Language) is a fundamental
+component of the Dynatrace Platform, empowering
+users with advanced capabilities to query, analyze, and
+visualize vast amounts of performance data.
+Understanding DQL
+Running DQL Queries
+Creating Simple DQL Queries
+DQL (Dynatrace Query Language) is a powerful tool to explore data. With DQL, you can spot
+trends, find anomalies and outliers, statistical modeling and understand system behavior. The
+data is stored in Dynatrace Grail storage. DQL is built for processing arbitrary event data and
+requires no up-front description of the input data's schema contrary to relational databases
+like SQL tables.
+Learn more about DQL with these resources:
+A Practical Guide to DQL (Dynatrace Query Language)
+Estimated Time: 36 mins.
+WATCH VIDEO
+Dynatrace Docs: Dynatrace Query Language
+VISIT PAGE
+Dynatrace Docs: How to Use DQL Queries
+VISIT PAGE
+Call to Action
+To help you gain hands on experience in this subject area
+it is recommended that you take the following actions.
+Complete the "Beginners Exercise" on and practice handling basic
+commends with DQL language.
+1
+In this chapter you will focus on:
+Lesson 9 of 12
+Security
+Security
+Security is an integral aspect of the Dynatrace Platform,
+ensuring that application and infrastructure monitoring
+is conducted within a safe and protected environment.
+Understanding Dynatrace Security Measure.
+Using Davis Security Advisor.
+Identifying Third-Party Vulnerabilities.
+Addressing Code-Level Vulnerabilities.
+Performing Security Investigations.
+Security
+Dynatrace incorporates robust security measures, including encryption, access controls, and
+compliance with industry standards, to protect sensitive data and ensure the integrity of
+monitoring processes. The platform continuously monitors for vulnerabilities and potential
+threats, to proactively address security risks and maintain resilience against attacks.
+Visit resources to learn more on Application Security.
+Dynatrace Docs: Application Security
+READ DOCUMENT
+Dynatrace Hub: Application Security
+VISIT WEBSITE
+Third-Party Vulnerabilities
+Third-party vulnerabilities are weaknesses in external vendors' systems, software, or
+processes that can be exploited to compromise an organization's security. These vulnerabilities
+often lie outside the direct control of the organization, making them harder to detect and
+mitigate. Common sources include software flaws, inadequate security protocols, and lack of
+visibility into vendor practices.
+Read more on Dynatrace Documents.
+Dynatrace Docs: Third-Party Vulnerabilities
+READ DOCUMENT
+Davis Security Advisor
+Responding to Security Notifications.
+The Davis Security Advisor is displayed in Third-Party Vulnerabilities above the vulnerability list
+on the Third-party vulnerabilities page. It recommends the fixes that would most improve the
+overall security of your environment.
+Visit Dynatrace Docs to learn more on Davis Security Advisor.
+Dynatrace Docs: Davis Security Advisor Calculations
+READ DOCUMENT
+Dynatrace Docs: Davis Security Score Calculations
+READ DOCUMENT
+Code-Level Vulnerabilities
+Code-level vulnerabilities are flaws in software code that can be exploited to compromise
+security. They often stem from coding errors, insecure libraries, or poor security practices.
+Addressing these vulnerabilities can help to prevent data breaches, system crashes, and
+unauthorized access.
+Read more on Dynatrace Documents.
+Dynatrace Docs: Code-Level Vulnerabilities
+READ DOCUMENT
+Security Investigator
+Security Investigator is designed to streamline evidence driven investigations on data in Grail.
+It features assisted functionalities and automations to expedite and support investigation
+resolution, leveraging logs, metrics, and traces.
+Read more on Dynatrace Documents.
+Dynatrace Docs: Security Investigator
+READ DOCUMENT
+Vulnerabilities
+Vulnerabilities helps you detect, visualize, analyze, monitor, and fix vulnerabilities in your
+application stack. It can identify code-level, third-party, and runtime vulnerabilities, showing
+all issues in a combined, prioritized view.
+Explore more on the Dynatrace Docs.
+Dynatrace Docs: Vulnerabilities
+READ DOCUMENT
+Using the Dynatrace Playground complete the following:
+Call to Action
+To help you gain hands on experience in this subject area
+it is recommended that you take the following actions.
+Explore the vulnerabilities that are detected. What are the critical
+vulnerabilities? Do you see how Dynatrace detects if sensitive data is
+connected to the detection? 
+1
+Consider what happens in your organization when someone (or a tool)
+detects a vulnerability. Is there an automatic process present to create
+actionable items or tickets? How can Dynatrace integrate into a tool like
+this? 
+2
+In this chapter you will focus on:
+Automation
+Dynatrace uses automation to streamline tasks like anomaly detection, root cause analysis,
+and performance optimization. The AutomationEngine leverages AI-driven insights to
+Lesson 10 of 12
+Automation
+Automation
+Automation is an integral component of the Dynatrace
+Platform, driving efficiency and accuracy in monitoring
+and performance management processes. 
+Understanding at Dynatrace.
+Automating Workflows.
+automate workflows across observability, security, and business data, making it easy to create
+and manage automated processes with no-code and low-code tools.
+Learn more automation for manual tasks on Dynatrace Docs.
+Dynatrace Docs: AutomationEngine
+READ DOCUMENT
+Dynatrace Docs: Introduction to Workflows
+READ DOCUMENT
+Call to Action
+To help you gain hands on experience in this subject area
+it is recommended that you take the following actions.
+Use the Workflows Quick Start Guide practice automating a workflow. 1
+In this chapter you will focus on the basics of:
+Lesson 11 of 12
+Ingestion
+Ingestion
+Ingestion serves as a foundational element within the
+Dynatrace Platform, facilitating the seamless acquisition
+and integration of critical data streams from diverse
+sources across complex IT environments. 
+Understanding Ingestion Mechanisms
+Analyzing Log Ingestion
+Exploring Cloud Integrations
+Monitoring VMware Monitor Hub
+Ingestion
+Dynatrace collects metrics, logs, traces, and other data to give a complete view of system
+performance and behavior. This allows for real-time monitoring, analysis, and proactive
+management of applications and infrastructure. Users can detect issues, optimize
+performance, and ensure great user experiences.
+Log Ingestion
+Log ingestion is the process of collecting log data from various sources within an
+infrastructure. The logs are stored in the Grail data lakehouse for analysis, automation, and
+monitoring. OneAgent simplifies this by automatically discovering logs and offering central
+management options. In serverless environments or where OneAgent installation isn't
+possible, the Logs Ingestion API can be used.
+Learn more on Dynatrace Docs.
+Dynatrace Docs: Log Ingestion
+READ DOCUMENT
+Cloud Integrations
+Learn more on Dynatrace Docs.
+Dynatrace Docs: Cloud Integrations
+READ DOCUMENT
+VMware Monitor Hub
+VMware Monitor Hub enables the ingestion of metrics and logs from VMware vSphere
+environments. It connects to vCenter to gather data on clusters, hosts, VMs, datastores, and
+disks, helping monitor health and performance.
+Learn more on Dynatrace Docs.
+Dynatrace Docs: VMware vSphere Monitoring
+READ DOCUMENT
+In this chapter you will focus on:
+Dynatrace Topology
+Dynatrace Topology, visualized through Smartscape, automatically discovers and maps all
+components and dependencies in your application environment. It provides a real-time,
+interactive view of your entire technology stack, helping you understand how everything is
+interconnected.
+Learn more on Dynatrace Docs.
+Dynatrace Docs: Visualize your environment topology through Smartscape
+READ DOCUMENT
+Investigate Logs
+Log Management and Analytics gives you direct access to the log content of all your system's
+mission-critical processes. Log data typically contain a lot of information. One way to handle a
+large amount of data is to narrow down the log records and parse them.
+Lesson 12 of 12
+Other
+Understanding Dynatrace Topology
+Investigating Logs
+Understanding Use Cases for the Software Hub
+Learn more on Dynatrace Docs.
+Dynatrace Docs: Log Content Analysis
+READ DOCUMENT
+Dynatrace Hub
+The Dynatrace Hub enhances software development and deployment through automated
+observability, cloud integration, continuous delivery, and IT operations management. It
+leverages AI-powered insights to monitor applications, optimize performance, and ensure
+operational excellence across multi-cloud environments.
+Learn more on Dynatrace Docs.
+Dynatrace Docs: Dynatrace Hub
+READ DOCUMENT
+Call to Action
+To help you gain hands on experience in this subject area
+it is recommended that you take the following actions.
+Throughout this learning path, you've gone through a lot of different
+types of entities. Ensure you know how to separate them when looking
+at data (for example, the difference between Hosts and Process
+Groups). 
+1
+Dynatrace can do much more than just investigate lines of log data. Can
+you find any examples of log events or metrics in the Dynatrace
+Playground? (Hint: Try searching for the prefix "log." in the Metrics app)
+2

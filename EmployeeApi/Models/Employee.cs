@@ -7,6 +7,8 @@ public partial class Employee
 {
     public int Id { get; set; }
 
+    public string? FileUniqueId { get; set; }
+
     public string EmployeeName { get; set; } = null!;
 
     public string Department { get; set; } = null!;
@@ -38,6 +40,8 @@ public partial class Employee
 
     public int? DeleteApprovedBy { get; set; }
     public DateTime? DeleteApprovedOn { get; set; }
+
+    public int TotalpageCount { get; set; }
 
     public virtual ICollection<EmployeeDocument> EmployeeDocuments { get; set; } = new List<EmployeeDocument>();
 }

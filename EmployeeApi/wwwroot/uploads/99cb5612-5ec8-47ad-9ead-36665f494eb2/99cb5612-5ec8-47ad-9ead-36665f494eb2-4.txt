@@ -1,0 +1,73 @@
+Nitesh Singh
+Software Developer
+Ra
++91.9594947475 NiteshSingh.ns26@gmail.com Kalyan, MH
+Objective
+Results-driven Software Engineer with 2+ years of experience in full-stack development,
+testing and deployment of scalable software solutions. Proficient in C#, JavaScript, jQuery
+and .NET frameworks. Known for strong problem-solving skills, effective team 
+collaboration, and a proven ability to quickly adapt to new technologies and complex 
+business environments.
+Education SSC Completed
+New Era English High School March 2015 
+Maharashtra Board
+HSC, Science Completed
+RKT College of Arts Science and Commerce February 2017 
+Maharashtra Board
+Computer Science, Bachelor of Science Completed
+Saket College of Arts, Science & commerce April 2020 
+Mumbai University
+Master’s in Information Technology Completed
+Saket College of Arts, Science & commerce April 2022 
+Mumbai University
+Key Skills C#
+.Net 
+JavaScript 
+HTML 
+CSS
+MySQL Server
+Experience Biztran Solutions Pvt Ltd:(Feb 2025 – July 2025)
+ Led the RIL ERP project, managing 2 developers (Desktop and Flutter) and 
+successfully delivered 6+ core modules within 1 month, including Delivery 
+Challan, GRN, and Master Data Management (Company, User, Account, Branch, 
+Product, BOM) with QR code scanning integration.
+ Developed and upgraded the EasyChat Marketing CRM Flutter app, 
+improving process speed by 40% and enabling real-time WhatsApp 
+messaging and campaign scheduling via WhatsApp Cloud API integration. 
+Delivered a fully redesigned UI for enhanced user experience.
+ Implemented Redis caching in VSPCRM Cloud ERP, reducing data retrieval 
+time from several seconds to sub-second speeds, increasing database access 
+efficiency by up to 10x and ensuring seamless softphone (Zoiper/X-Lite) 
+integration.
+ Optimized WinnerScreen ERP performance, reducing page load times from 
+8–9 seconds to just 3 seconds (over 65% improvement) by optimizing API 
+calls and background image processing.
+ Gained hands-on expertise in VB.Net, Flutter, Redis, Node.js APIs, Linux, and 
+Google Cloud Platform (GCP), including independent setup and hosting of 
+Redis servers on Linux cloud environments to enable real-time 
+communication with VB.Net desktop applications.
+ Collaborated closely with project managers, cross-functional teams, and 
+clients to ensuring 100% on-time delivery.
+Care Centrix Pvt Ltd : (Jun 2024-Dec2024)
+ Conducted thorough testing and debugging to ensure software quality
+and reliability.
+ Contributed to the design and implementation of core HRMS features such as 
+employee profiles, asset approval and leave approval using C# and ASP.NET.
+ Enhanced system workflows, improving user experience and reducing manual 
+intervention by approximately 30%.
+Eresource Infotech Pvt Ltd: (Mar 2023 – May 2024)
+ Provided end-user support for MVPL and TLPL ERP projects, resolving 
+issues with a first-response fix rate of over 85%.
+ Proactively identified recurring problems and implemented preventive 
+measures to reduce repeat issues by approximately 50%.
+ Collaborated with cross-functional teams to analyze user needs and 
+translate them into technical specifications.
+ Wrote clean, efficient, and scalable code using C# .Net JavaScript and MS 
+SQL Server.
+ Conducted thorough testing and debugging to ensure software quality
+and reliability.
+ Provided technical support and assistance to end-users as required
+Soft skills  Observation
+ Decision making
+ Communication
+ Multi-tasking

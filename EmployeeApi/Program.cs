@@ -29,7 +29,7 @@ if (!app.Environment.IsProduction())
 }
 
 app.UseHttpsRedirection();
-
+app.UseStaticFiles();
 app.UseCors("AllowLocalhost7236");
 
 app.UseAuthorization();

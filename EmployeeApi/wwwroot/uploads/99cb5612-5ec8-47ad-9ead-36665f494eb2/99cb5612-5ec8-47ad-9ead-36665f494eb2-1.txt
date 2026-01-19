@@ -1,0 +1,64 @@
+NITESH SINGH
+Kalyan, Maharashtra • +91 9594947475 • NiteshSingh.ns26@gmail.com • 
+linkedin.com/in/niteshsingh
+EDUCATION
+Mumbai University Aug 2020 – Apr 2022
+Master’s in Information Technology
+Saket College of Arts, Science & Commerce Jun 2017 – Apr 
+2020
+Bachelor of Science in Computer Science
+RKT College Jun 2015 – Mar 2017
+HSC (Science)
+New Era English High School Jun 2014 – Mar 2015
+SSC
+TECHNICAL SKILLS
+Languages & Tools: 
+C#, VB.NET,JavaScript, HTML, CSS,Postman,Node.js,Angular,MVC,Linux,API,Git,Excel
+Frameworks : 
+.NET,ASP.NET, MSSQL Server,Redis
+WORK EXPERIENCE
+Biztran Solutions Pvt Ltd Feb 2025 – Jul 2025
+• Led RIL ERP project and delivered 6+ modules in 1 month including GRN, Delivery Challan, 
+and Master Data Management with QR integration.
+• Upgraded EasyChat CRM app, improving speed by 40%, enabling real-time WhatsApp 
+messaging via WhatsApp Cloud API.
+• Implemented Redis caching in VSPCRM ERP, reducing retrieval time significantly and 
+enabling softphone integration.
+• Optimized WinnerScreen ERP, reducing load times by over 65%.
+• Gained hands-on experience in VB.Net, Flutter, Redis, Node.js APIs, Linux, GCP, and Redis 
+cloud setup.
+• Ensured 100% on-time delivery by collaborating with PMs, teams, and clients.
+Care Centrix Pvt Ltd Jun 2024 – Dec 2024
+• Spearheaded functional testing and debugging of core HRMS modules to ensure 
+production-grade stability and performance.
+• Designed and implemented employee profiles, asset approval, and leave workflows using 
+C# and ASP.NET, improving process transparency and reliability.
+• Streamlined user experience by automating manual workflows, cutting administrative 
+overhead by ~30% and enhancing system adoption.
+Eresource Infotech Pvt Ltd Mar 2023 – May 2024
+• Delivered end-user support for MVPL and TLPL ERP systems, achieving an 85%+ first￾response resolution rate and maintaining high customer satisfaction.
+• Engineered preventive solutions to recurring issues, driving a 50% reduction in repeat 
+support tickets across modules.
+• Collaborated with cross-functional teams to gather requirements and convert user 
+feedback into clear technical specifications.
+• Developed scalable backend components using C#, JavaScript, and SQL Server, ensuring 
+performance, maintainability, and modular architecture.
+• Managed software QA and technical support, executing thorough testing protocols to 
+ensure production-grade reliability.
+PERSONAL PROJECTS
+WhatsApp Web Bulk Message Sender Jan 2025
+• Built a tool that automates bulk messaging via whatsapp web using javascript automation 
+and browser scripting.
+• Designed with rate limit to ensure compliance with ethical messaging standards.
+• GitHub : https://github.com/Nitesh-singh-1/WhatsAppWebExtension.git
+JobPortal Web App In Progress as of Jul 2025
+• Developing a full-stack job portal using Asp.Net Core , Angular and Sql Server.
+• Planned features include login/signup, job listing, resume uploads, recuiter dashboard, and 
+application tracking
+• Project currently in early setup phase(structure, database schema planning).
+• GitHub : https://github.com/Nitesh-singh-1/jobPortal.git
+SOFT SKILLS
+• Observation
+• Decision Making
+• Communication
+• Multi-tasking

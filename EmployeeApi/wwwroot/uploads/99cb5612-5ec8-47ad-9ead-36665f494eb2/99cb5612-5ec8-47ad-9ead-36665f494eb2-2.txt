@@ -1,0 +1,39 @@
+Scope of Work (SOW) 
+Demo Project for ASP.NET Developer 
+Project Title: 
+Student Registration and Report Generation System with Login and CAPTCHA 
+Objective: 
+To assess the candidate’s practical understanding of ASP.NET development, authentication 
+implementation, form validation, data management, and dynamic report generation. 
+Project Overview: 
+The candidate is required to develop a web-based application in ASP.NET (Core or Framework as per 
+choice) using C# / Vb.Net, with the following major components: 
+1. Login Page with CAPTCHA Verification 
+2. Student Registration Form 
+3. Validation Rules (Server-Side and Client-Side) 
+4. Report Generation based on specified logic 
+Modules and Functional Requirements: 
+1. Login Page with CAPTCHA  A simple login page with username and password fields.  CAPTCHA: Generate a random 6-character alphanumeric CAPTCHA (e.g., X7P2Z1).  CAPTCHA should include both upper/lowercase alphabets and numbers.  CAPTCHA should refresh on page reload or click on a refresh icon.  User must enter the CAPTCHA correctly to log in.  Hardcoded credentials can be used (e.g., admin/admin123) for demo purposes. 
+2. Student Registration Form 
+After successful login, the user should land on a form that allows registration of a student. 
+Form Fields: 
+Field Name Type Validation Requirements
+Class Dropdown Values from I to X only
+Roll Number Numeric Must not exceed 60
+Student Name Text Required
+Age Numeric Must be less than 18 years
+Gender Radio Button M/F/O
+Address Text Area Required
+Behavior:  Form should validate inputs both on client side and server side (C# / VB.Net).  Submitted data should be stored in a local database table.  Handle duplicate Class + Roll Number combinations (should be unique). 
+3. Report Generation Page  Display all saved student records in a report format.  Group the report by Class with each class starting on a new page (page break).  Within each class, list students ordered by Roll Number.  Report must include: 
+School Name 
+Class Name - Date – 
+Roll 
+No. 
+Student Name Age Gender (Male / 
+Female / Other) 
+Address 
+ Page 1 of N
+Report Format Options:  Can be an HTML printable page or A Crystal Report / SSRS / PDF Report (optional bonus) 
+Technical Requirements:  Platform: ASP.NET Core or ASP.NET Web Forms/MVC (C# / VB.Net)  Database: MS Access  Frontend: Bootstrap, HTML/CSS/JavaScript  Validation: JavaScript/jQuery (optional), C# / Vb.Net server-side  CAPTCHA: Random alphanumeric with auto-refresh feature 
+Expected Deliverables:  Complete source code (in ZIP or GitHub link)  Instructions to run the project, documentation of Project with Screenshot & Report 

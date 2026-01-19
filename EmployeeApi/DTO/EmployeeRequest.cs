@@ -22,6 +22,7 @@
 
     public class AddEmployeeRequest
     {
+
         public string EmployeeName { get; set; } = string.Empty;
         public string Department { get; set; } = string.Empty;
         public string Designation { get; set; } = string.Empty;
@@ -31,7 +32,7 @@
         public string ToYear { get; set; } = string.Empty;
         public int? createdBy { get; set; }
 
-        public List<IFormFile>? Documents { get; set; }
+        //public List<IFormFile>? Documents { get; set; }
     }
 
     public class EmployeeResponse
